@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Type C Details | Alternative Track</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8f9fc;
+            display: flex;
+            min-height: 100vh;
+            color: #1a1a1a;
+        }
+
+        /* LEFT SIDEBAR - Type A Theme */
+        .sidebar {
+            width: 40%;
+            background: #092676; /* Cool deep indigo to blue */
+            color: white;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: fixed;
+            height: 100vh;
+        }
+
+        .sidebar-label {
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            font-weight: 700;
+            opacity: 0.85;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .sidebar-title {
+            font-size: clamp(4.2rem, 8vw, 7.2rem);
+            font-weight: 900;
+            line-height: 0.88;
+            letter-spacing: -0.06em;
+            margin-bottom: 32px;
+        }
+
+        .sidebar-desc {
+            font-size: 1.22rem;
+            line-height: 1.55;
+            opacity: 0.92;
+            max-width: 410px;
+        }
+
+        /* RIGHT CONTENT AREA */
+        .content-area {
+            margin-left: 40%;
+            width: 60%;
+            padding: 60px;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .bento-card {
+            border-radius: 32px;
+            padding: 42px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+
+        .bento-card:hover { transform: translateY(-4px); }
+
+        .card-full { grid-column: span 2; }
+
+        /* COOL, PROFESSIONAL COLOR PALETTE */
+        .bg-indigo   { background-color: #AFE9FD; color: #092676; }     /* Main accent */
+        .bg-slate    { background-color: #092676; color: #AFE9FD; }     /* Cool neutral */
+        .bg-sky      { background-color: #092676; color: #AFE9FD; }     /* Soft sky blue */
+        .bg-emerald  { background-color: #092676; color: white; }     /* Calm green accent */
+        .bg-white  { background-color: #AFE9FD; color: #092676; border: 1px solid #e5e7eb; }
+
+        .card-header {
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.82rem;
+            letter-spacing: 0.12em;
+            margin-bottom: 18px;
+            opacity: 0.85;
+        }
+
+        .card-body {
+            font-size: 1.38rem;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .pill {
+            background:#AFE9FD;
+            color: #092676;
+            padding: 7px 18px;
+            border-radius: 9999px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            display: inline-block;
+            margin: 4px 6px 4px 0;
+        }
+
+        .list-item {
+            font-size: 1.15rem;
+            margin-bottom: 14px;
+            font-weight: 600;
+            line-height: 1.45;
+        }
+
+        /* FOOTER */
+        .footer-nav {
+            grid-column: span 2;
+            margin-top: 40px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .back-link {
+            color: #475569;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 1.05rem;
+        }
+
+        .btn-main {
+            background: #092676;
+            color: white;
+            padding: 20px 44px;
+            border-radius: 9999px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+        .btn-main:hover {
+            background: #4338ca;
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 1024px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; position: relative; height: auto; padding: 50px 40px; }
+            .content-area { width: 100%; margin-left: 0; padding: 40px; }
+            .grid-layout { grid-template-columns: 1fr; }
+            .card-full { grid-column: span 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <p class="sidebar-label">Student Category</p>
+        <h1 class="sidebar-title">TYPE C</h1>
+        <p class="sidebar-desc">
+            Students who prefer non‑coding roles in tech environments
+        </p>
+    </aside>
+
+    <main class="content-area">
+        <div class="grid-layout">
+            
+            <!-- WHO THEY ARE -->
+            <div class="bento-card bg-indigo card-full">
+                <p class="card-header">Who they are</p>
+                <p class="card-body">
+                    Students who choose to focus on non‑technical or less technical aspects of technology. They may have foundational coding exposure but prefer paths like design, marketing, IT support, or business operations. 
+                    They are interested in working in tech without heavy programming demands.
+                </p>
+            </div>
+
+            <!-- WHAT THEY KNOW -->
+            <div class="bento-card bg-slate">
+                <p class="card-header">What they know</p>
+                <div class="card-body" style="font-size: 1.15rem; line-height: 1.6;">
+                   - Familiar with basic digital tools (Google Workspace, Microsoft Office)<br>
+                   - Awareness of technology concepts (how websites/apps work)<br>
+                   - Strong communication, organisation, teamwork<br>
+                   - Willingness to learn domain‑specific tools on the job<br>
+                   - Interest in non‑coding tech roles (design, marketing, IT support, admin)
+                </div>
+            </div>
+
+            <!-- WHAT THEY'VE DONE -->
+            <div class="bento-card bg-sky">
+                <p class="card-header">What they've done</p>
+                <div class="card-body" style="font-size: 1.15rem; line-height: 1.6;">
+                   - Created content (posts, flyers, simple graphics) for a student club<br>
+                   - Assisted with event coordination or administrative tasks<br>
+                   - Wrote clear instructions or helped document a project<br>
+                   - Helped peers troubleshoot basic tech issues<br>
+                   - Received positive feedback on reliability and communication
+                </div>
+            </div>
+
+            <!-- WHAT YOU PROVIDE -->
+            <div class="bento-card bg-white card-full">
+                <p class="card-header">What you provide</p>
+                <div class="card-body" style="font-size: 1.22rem; line-height: 1.65;">
+                   - Clear guidance and entry‑level tasks that build confidence<br>
+                   - Opportunities to work alongside technical and business teams<br>
+                   - Mentorship to develop domain expertise and soft skills<br>
+                   - Exposure to real‑world workflows and tools
+                </div>
+            </div>
+
+            <!-- SAMPLE ROLES -->
+            <div class="bento-card bg-emerald card-full">
+                <p class="card-header">Suggested Roles</p>
+                <p class="card-body" style="font-size: 1.65rem; line-height: 1.35;">
+                    <span class="pill">UI/UX Design Assistant</span>
+                <span class="pill">Digital Marketing Assistant</span>
+                <span class="pill">Junior Product Coordinator</span>
+                <span class="pill">Technical Writer (Entry)</span>
+                <span class="pill">Content Assistant</span>
+                <span class="pill">User Research Assistant</span>
+                <span class="pill">Social Media Assistant</span>
+                <span class="pill">Business Operations Assistant</span>
+                <span class="pill">IT Help Desk Assistant</span>
+                <span class="pill">IT Support Assistan</span>
+                </p>
+                
+
+            </div>
+
+            <!-- FOOTER -->
+            <footer class="footer-nav">
+                <a href="options.html" class="back-link">← Change Selection</a>
+                <a href="lasu_company_registration_complete.html" class="btn-main">Next: Join the waitlist →</a>
+            </footer>
+
+        </div>
+    </main>
+
+</body>
+</html>

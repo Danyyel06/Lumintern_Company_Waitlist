@@ -1,0 +1,195 @@
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-blue: #0066FF;
+    --bg-color: #F8F9FA;
+    --main-font: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #ffffff;
+    color: #111827;
+}
+
+.hero-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+}
+
+/* ── BADGE ── */
+.badge {
+    display: inline-block;
+    background: #ECFDF5;
+    color: #065f46;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 6px 18px;
+    border-radius: 100px;
+    margin-bottom: 2rem;
+    letter-spacing: 0.01em;
+}
+
+/* ── HEADLINE ── */
+.headline {
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    color: #111827;
+    font-size: 80px;
+    text-align: center;
+    line-height: 1;
+    padding: 0 0 2rem 0;
+}
+
+.highlight-text {
+    color: #092676;
+}
+
+/* ── SUBHEADLINE ── */
+.subheadline-container {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.main-sub {
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #111827;
+    margin-bottom: 2rem;
+}
+
+/* ── TYPE PREVIEW CHIPS ── */
+.type-preview-row {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.type-chip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #ffffff;
+    border: 2px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 14px 22px;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: default;
+}
+
+.type-chip:hover {
+    border-color: #092676;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(9, 38, 118, 0.12);
+}
+
+.chip-icon {
+    font-size: 1.3rem;
+}
+
+.chip-label {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #111827;
+    letter-spacing: -0.01em;
+}
+
+.chip-sub {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #6b7280;
+}
+
+/* ── SECONDARY SUB ── */
+.secondary-sub {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+/* ── BUTTON ── */
+a {
+    text-decoration: none;
+}
+
+.cta-button {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 auto;
+    background-color: #092676;
+    color: white;
+    padding: 1.2rem 2.5rem;
+    border-radius: 100px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.arrow {
+    font-size: 1.5rem;
+    transition: transform 0.2s ease;
+}
+
+.cta-button:hover .arrow {
+    transform: translateX(5px);
+}
+
+/* ── DECORATIVE STICKERS ── */
+.sticker {
+    position: absolute;
+    font-size: 3rem;
+    user-select: none;
+    opacity: 0.6;
+}
+
+.sticker-1 {
+    top: 15%;
+    left: 10%;
+    color: #092676;
+    animation: float 4s infinite ease-in-out;
+}
+
+.sticker-2 {
+    bottom: 20%;
+    right: 12%;
+    font-size: 2.5rem;
+    animation: float 5s infinite ease-in-out reverse;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-20px) rotate(10deg); }
+}
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+    .sticker { display: none; }
+    .headline { font-size: 3rem; }
+    .type-preview-row { gap: 10px; }
+    .type-chip { padding: 12px 16px; }
+    .main-sub { font-size: 1.3rem; }
+}
