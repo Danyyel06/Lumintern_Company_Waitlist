@@ -964,11 +964,12 @@
             /* Footer */
             .waitlist-card {
                 flex-direction: row;
+                justify-content: space-between;
                 text-align: left;
                 padding: 52px 48px;
                 gap: 32px;
             }
-            .waitlist-form { flex-direction: row; align-items: center; }
+            .waitlist-form { flex-direction: row; align-items: center; margin-left: auto; }
             .waitlist-form input { max-width: 260px; }
             .btn-submit { width: auto; padding: 18px 28px; }
             .footer-container { padding: 0 36px; }
@@ -1021,7 +1022,9 @@
             .card h3 { font-size: 2rem; margin: 0 0 30px 0; }
             .icon-wrap { margin-bottom: 30px; }
 
-            .waitlist-card { padding: 56px 56px; gap: 40px; }
+            .waitlist-card { padding: 56px 56px; gap: 40px; display: flex;
+            justify-items: space-between;
+            align-items: center;}
             .waitlist-content h2 { font-size: 2.2rem; }
             .waitlist-form input { max-width: 300px; }
             .footer-container { padding: 0 40px; }
