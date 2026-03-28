@@ -430,6 +430,8 @@
 
         .waitlist-form {
             display: flex;
+            flex: 1;
+            justify-items: flex-end;
             flex-direction: column;
             gap: 12px;
             width: 100%;
@@ -969,7 +971,7 @@
                 padding: 52px 48px;
                 gap: 32px;
             }
-            .waitlist-form { flex-direction: row; align-items: center; margin-left: auto; }
+            .waitlist-form { flex-direction: row; align-items: center; margin-left: auto; flex: 1; justify-content: flex-end;}
             .waitlist-form input { max-width: 260px; }
             .btn-submit { width: auto; padding: 18px 28px; }
             .footer-container { padding: 0 36px; }
@@ -1022,9 +1024,7 @@
             .card h3 { font-size: 2rem; margin: 0 0 30px 0; }
             .icon-wrap { margin-bottom: 30px; }
 
-            .waitlist-card { padding: 56px 56px; gap: 40px; display: flex;
-            justify-items: space-between;
-            align-items: center;}
+            .waitlist-card { padding: 56px 56px; gap: 40px; justify-content: flex-end; }
             .waitlist-content h2 { font-size: 2.2rem; }
             .waitlist-form input { max-width: 300px; }
             .footer-container { padding: 0 40px; }
@@ -1091,9 +1091,6 @@
                 border-radius: 48px;
                 gap: 40px;
                 margin-bottom: 80px;
-                display: flex;
-            justify-items: space-between;
-            align-items: center;
             }
             .waitlist-content h2 { font-size: 2.5rem; }
             .waitlist-form input { max-width: none; flex: 1; padding: 18px 24px; font-size: 1rem; }
