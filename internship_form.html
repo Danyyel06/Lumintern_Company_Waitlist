@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Internship Programme — Company Intake Form</title>
+<!-- Google Font: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #092676;
+    --primary-light: #eef2ff;
+    --bg: #fcfcfd;
+    --surface: #ffffff;
+    --border: #e2e8f0;
+    --text-main: #101828;
+    --text-muted: #475467;
+    --text-dim: #667085;
+    --accent-success: #079455;
+    --radius: 12px;
+    --shadow: 0 4px 20px rgba(16, 24, 40, 0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text-main);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* ── Hero Section ── */
+  .hero {
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    padding: 80px 40px 60px;
+    text-align: center;
+  }
+  .hero-inner { max-width: 860px; margin: 0 auto; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--primary-light); border: 1px solid #d0d5dd;
+    border-radius: 50px; padding: 6px 16px;
+    font-size: 12px; font-weight: 700; color: var(--primary);
+    text-transform: uppercase; margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 800; line-height: 1.2;
+    color: var(--text-main); margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+  .hero h1 span { 
+    color: var(--primary); 
+    position: relative;
+    display: inline-block;
+  }
+  /* The "Matched" intelligent circle from screenshot */
+  .hero h1 span::after {
+    content: '';
+    position: absolute;
+    inset: -5px -10px;
+    border: 2px solid #FFE600;
+    border-radius: 50% 40% 60% 30%;
+    opacity: 0.6;
+    z-index: -1;
+  }
+  .hero p { font-size: 18px; color: var(--text-muted); max-width: 600px; margin: 0 auto 32px; }
+  .hero-meta { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
+  .hero-meta-item { font-size: 14px; color: var(--text-dim); font-weight: 500; display: flex; align-items: center; gap: 6px; }
+
+  /* ── Layout ── */
+  .form-wrap { max-width: 900px; margin: 0 auto; padding: 40px 24px 100px; }
+
+  /* ── Progress Bar ── */
+  .progress-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    background: #fff; border: 1px solid var(--border);
+    padding: 20px; border-radius: 16px; margin-bottom: 40px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+  }
+  .progress-step {
+    flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; cursor: pointer;
+    position: relative;
+  }
+  .progress-dot {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: #fff; border: 2px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: var(--text-dim);
+    transition: 0.3s;
+  }
+  .progress-step.active .progress-dot { background: var(--primary); border-color: var(--primary); color: #fff; }
+  .progress-step.done .progress-dot { background: #E7F0FF; border-color: var(--primary); color: var(--primary); }
+  .progress-label { font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--text-dim); }
+  .progress-step.active .progress-label { color: var(--primary); }
+
+  /* ── Section Cards ── */
+  .section-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    margin-bottom: 32px;
+    box-shadow: var(--shadow);
+    display: none;
+    overflow: hidden;
+  }
+
+  .section-label {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.1em; margin-bottom: 6px;
+  }
+  .section-card.active { display: block; }
+
+  .section-header {
+    padding: 32px; border-bottom: 1px solid var(--border);
+    background: #fcfcfd; display: flex; align-items: center; gap: 20px;
+  }
+  .section-icon {
+    width: 56px; height: 56px; border-radius: 14px;
+    background: #fff; border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; flex-shrink: 0;
+  }
+  .section-title { font-size: 22px; font-weight: 800; color: var(--text-main); margin-bottom: 4px; }
+  .section-desc { font-size: 14px; color: black; }
+
+  /* ── Field Groups ── */
+  .field-group { padding: 32px; border-bottom: 1px solid var(--border); }
+  .field-group:last-child { border-bottom: none; }
+  .field-label { font-size: 10px; font-weight: 700; color: var(--text-main); margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+  .badge { font-size: 10px; font-weight: 700; padding: 2px 10px; border-radius: 6px; text-transform: uppercase; }
+  .badge-multi { background: #ECFDF3; color: #027A48; }
+  .badge-single { background: #EFF8FF; color: #175CD3; }
+  .field-hint { font-size: 13px; color: var(--text-dim); margin-bottom: 20px; }
+
+  /* ── Input Grid ── */
+  .options-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+  .options-grid.narrow { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+  .options-grid.wide { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+
+  .opt-item input { position: absolute; opacity: 0; }
+  .opt-item label {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 14px 16px; border-radius: 12px;
+    border: 1px solid var(--border); background: #fff; cursor: pointer;
+    font-size: 14px; color: var(--text-muted); font-weight: 500; transition: 0.2s;
+  }
+  .opt-item label:hover { border-color: var(--primary); background: #fcfcfd; }
+  .opt-item input:checked + label {
+    background: #F5F8FF; border-color: var(--primary); color: var(--primary); box-shadow: 0 0 0 1px var(--primary);
+  }
+  
+  .opt-check, .opt-radio {
+    width: 20px; height: 20px; border-radius: 6px; border: 2px solid var(--border);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #fff;
+  }
+  .opt-radio { border-radius: 50%; }
+  .opt-item input:checked + label .opt-check { background: var(--primary); border-color: var(--primary); }
+  .opt-item input:checked + label .opt-check::after { content: '✓'; color: #fff; font-size: 12px; font-weight: 800; }
+  .opt-item input:checked + label .opt-radio::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--primary); }
+
+  /* ── Form Controls ── */
+  .styled-input, .styled-select {
+    width: 100%; border: 1px solid var(--border); border-radius: 10px;
+    padding: 12px 16px; font-family: inherit; font-size: 14px; color: var(--text-main);
+  }
+  .styled-input:focus, .styled-select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px rgba(9, 38, 118, 0.1); }
+
+  /* ── Sub Group Labels ── */
+  .sub-group-label {
+    font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--primary);
+    margin: 24px 0 12px; display: flex; align-items: center; gap: 8px;
+  }
+  .sub-group-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* ── Navigation Buttons ── */
+  .form-nav { padding: 32px; display: flex; justify-content: space-between; background: #fcfcfd; border-top: 1px solid var(--border); }
+  .btn {
+    font-family: inherit; font-size: 15px; font-weight: 700;
+    padding: 12px 28px; border-radius: 50px; cursor: pointer; transition: 0.2s;
+    display: flex; align-items: center; gap: 8px; border: none;
+  }
+  .btn-ghost { background: #fff; border: 1px solid var(--border); color: var(--text-muted); }
+  .btn-ghost:hover { background: #f9fafb; color: var(--text-main); }
+  .btn-primary { background: var(--primary); color: #fff; }
+  .btn-primary:hover { background: #061b56; transform: translateY(-1px); }
+  .btn-success { background: var(--accent-success); color: #fff; }
+
+  /* ── Category Cards (Section 2) ── */
+  .cat-select-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .cat-card {
+    border: 1px solid var(--border); padding: 24px; border-radius: 16px;
+    cursor: pointer; transition: 0.2s; position: relative;
+  }
+  .cat-card:hover { transform: translateY(-2px); border-color: var(--primary); }
+  .cat-card input { position: absolute; opacity: 0; }
+  .cat-card.checked-a, .cat-card.checked-b, .cat-card.checked-c, .cat-card.checked-d {
+    background: #F5F8FF; border: 2px solid var(--primary);
+  }
+  .cat-card-icon { font-size: 32px; margin-bottom: 12px; }
+  .cat-card-title { font-size: 16px; font-weight: 800; color: black; margin-bottom: 4px; }
+  .cat-card-sub { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+  /* ── Summary Card ── */
+  .summary-card { background: #fff; border: 1px solid var(--border); border-radius: 24px; padding: 60px; text-align: center; display: none; box-shadow: var(--shadow); }
+  .summary-card.active { display: block; }
+  .summary-title { font-size: 32px; font-weight: 800; color: var(--primary); margin-bottom: 16px; }
+
+  @media (max-width: 600px) { .cat-select-grid { grid-template-columns: 1fr; } .progress-label { display: none; } }
+
+
+
+  /* ── Field ── */
+  .field-group { padding: 28px 32px; border-bottom: 1px solid var(--border); }
+  .field-group:last-child { border-bottom: none; }
+
+  .field-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px; font-weight: 600; color: var(--text);
+    margin-bottom: 4px; display: flex; align-items: center; gap: 8px;
+  }
+  .field-label .badge {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px; font-weight: 500; padding: 2px 8px;
+    border-radius: 20px; text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .badge-multi { background: rgba(108,99,255,0.15); color: #a09aff; }
+  .badge-single { background: rgba(67,233,123,0.12); color: #43e97b; }
+  .badge-select { background: rgba(255,193,7,0.1); color: #ffc107; }
+  .field-hint { font-size: 12px; color: var(--text-dim); margin-bottom: 16px; }
+
+  /* ── Checkbox Grid ── */
+  .options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 8px;
+  }
+  .options-grid.wide { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+  .options-grid.narrow { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+
+  .opt-item {
+    position: relative;
+  }
+  .opt-item input { position: absolute; opacity: 0; width: 0; height: 0; }
+  .opt-item label {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 11px 14px; border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--tag-bg);
+    cursor: pointer;
+    font-size: 13px; color: var(--text-muted); line-height: 1.4;
+    transition: all 0.18s;
+    user-select: none;
+  }
+  .opt-item label:hover { border-color: var(--border-bright); color: var(--text); }
+  .opt-item input:checked + label {
+    background: var(--checked-bg);
+    border-color: var(--checked-border);
+    color: var(--text);
+  }
+  .opt-check {
+    width: 16px; height: 16px; border-radius: 4px;
+    border: 2px solid var(--border-bright);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 1px;
+    transition: all 0.15s;
+  }
+  .opt-item input:checked + label .opt-check {
+    background: var(--accent); border-color: var(--accent);
+  }
+  .opt-item input:checked + label .opt-check::after {
+    content: '✓'; font-size: 10px; color: #fff; font-weight: 700;
+  }
+
+  /* Radio style */
+  .opt-item.radio label { }
+  .opt-radio {
+    width: 16px; height: 16px; border-radius: 50%;
+    border: 2px solid var(--border-bright);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 1px;
+    transition: all 0.15s;
+  }
+  .opt-item.radio input:checked + label { background: var(--checked-bg); border-color: var(--checked-border); color: var(--text); }
+  .opt-item.radio input:checked + label .opt-radio {
+    border-color: var(--accent);
+  }
+  .opt-item.radio input:checked + label .opt-radio::after {
+    content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); display: block;
+  }
+
+  /* Category sub-groups */
+  .sub-group { margin-bottom: 20px; }
+  .sub-group-label {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--text-dim);
+    margin-bottom: 8px; padding-left: 2px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .sub-group-label::before { content: ''; display: block; width: 12px; height: 2px; background: var(--accent); border-radius: 2px; }
+
+  /* Dropdown */
+  .styled-select {
+    width: 100%; background: var(--tag-bg);
+    border: 1px solid var(--border); border-radius: 8px;
+    padding: 11px 14px; color: var(--text);
+    font-family: 'DM Sans', sans-serif; font-size: 13px;
+    appearance: none; cursor: pointer; max-width: 360px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238080a0' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 14px center;
+  }
+  .styled-select:focus { outline: none; border-color: var(--accent); }
+
+  /* Text input */
+  .styled-input {
+    width: 100%; max-width: 400px;
+    background: var(--tag-bg); border: 1px solid var(--border);
+    border-radius: 8px; padding: 11px 14px;
+    color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 13px;
+  }
+  .styled-input:focus { outline: none; border-color: var(--accent); }
+  .styled-input::placeholder { color: var(--text-dim); }
+
+  /* Nav buttons */
+  .form-nav {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 32px; gap: 12px;
+  }
+  .btn {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px; font-weight: 600;
+    padding: 13px 28px; border-radius: 10px;
+    border: none; cursor: pointer;
+    transition: all 0.2s; display: flex; align-items: center; gap: 8px;
+  }
+  .btn-ghost {
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+  .btn-ghost:hover { border-color: var(--border-bright); color: var(--text); }
+  .btn-primary {
+    background: var(--accent); color: #fff;
+  }
+  .btn-primary:hover { background: #7d75ff; transform: translateY(-1px); }
+  .btn-success { background: var(--accent3); color: #000; }
+  .btn-success:hover { background: #5ef590; }
+
+  /* ── Company Info Section ── */
+  .info-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  }
+  @media (max-width: 600px) { .info-grid { grid-template-columns: 1fr; } }
+  .info-field label {
+    display: block; font-size: 12px; font-weight: 500;
+    color: var(--text-dim); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.06em;
+  }
+
+  /* Divider */
+  .field-divider {
+    height: 1px; background: var(--border);
+    margin: 4px 0 20px;
+  }
+
+  /* Category selection (Section 1) */
+  .cat-select-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 560px) { .cat-select-grid { grid-template-columns: 1fr; } }
+  .cat-card {
+    position: relative; border-radius: 12px;
+    border: 2px solid var(--border); background: var(--tag-bg);
+    padding: 20px; cursor: pointer; transition: all 0.2s;
+  }
+  .cat-card input { position: absolute; opacity: 0; }
+  .cat-card:hover { border-color: var(--border-bright); }
+  .cat-card.checked-a { border-color: var(--accent); background: rgba(108,99,255,0.08); }
+  .cat-card.checked-b { border-color: var(--accent3); background: rgba(67,233,123,0.06); }
+  .cat-card.checked-c { border-color: var(--accent2); background: rgba(255,101,132,0.06); }
+  .cat-card.checked-d { border-color: #ffc107; background: rgba(255,193,7,0.06); }
+  .cat-card-icon { font-size: 28px; margin-bottom: 10px; }
+  .cat-card-sub { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
+
+  /* Tooltip note */
+  .field-note {
+    margin-top: 12px; padding: 10px 14px;
+    background: rgba(108,99,255,0.07); border-left: 3px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+    font-size: 12px; color: var(--text-muted); line-height: 1.6;
+  }
+
+  /* Summary */
+  .summary-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; padding: 36px; text-align: center;
+    display: none;
+  }
+  .summary-card.active { display: block; }
+  .summary-icon { font-size: 56px; margin-bottom: 20px; }
+  .summary-title {
+    font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 800;
+    color: #fff; margin-bottom: 10px;
+  }
+  .summary-sub { font-size: 15px; color: var(--text-muted); margin-bottom: 28px; }
+  .summary-chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .summary-chip {
+    background: var(--tag-bg); border: 1px solid var(--border);
+    border-radius: 6px; padding: 6px 14px;
+    font-size: 13px; color: var(--text-muted);
+  }
+
+  @media (max-width: 640px) {
+    .section-header { padding: 20px; flex-direction: column; }
+    .field-group { padding: 20px; }
+    .hero { padding: 40px 20px; }
+  }
+</style>
+</head>
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Company Intake Form · Internship Programme</div>
+    <h1>Tell us about your <span>intern needs</span></h1>
+    <p>Help us match you with the right students. Fill in the sections that apply to your company's open internship categories.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">📋 <span>~10–15 min to complete</span></div>
+      <div class="hero-meta-item">🔒 <span>Responses are confidential</span></div>
+      <div class="hero-meta-item">✏️ <span>Save & return anytime</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="form-wrap">
+
+  <!-- Progress -->
+  <div class="progress-bar" id="progressBar">
+    <div class="progress-step active" data-step="0" onclick="goTo(0)">
+      <div class="progress-dot">1</div>
+      <div class="progress-label">Company</div>
+    </div>
+    <div class="progress-line"></div>
+    <div class="progress-step" data-step="1" onclick="goTo(1)">
+      <div class="progress-dot">2</div>
+      <div class="progress-label">Categories</div>
+    </div>
+    <div class="progress-line"></div>
+    <div class="progress-step" data-step="2" onclick="goTo(2)">
+      <div class="progress-dot">A</div>
+      <div class="progress-label">Type A</div>
+    </div>
+    <div class="progress-line"></div>
+    <div class="progress-step" data-step="3" onclick="goTo(3)">
+      <div class="progress-dot">B</div>
+      <div class="progress-label">Type B</div>
+    </div>
+    <div class="progress-line"></div>
+    <div class="progress-step" data-step="4" onclick="goTo(4)">
+      <div class="progress-dot">C</div>
+      <div class="progress-label">Type C</div>
+    </div>
+    <div class="progress-line"></div>
+    <div class="progress-step" data-step="5" onclick="goTo(5)">
+      <div class="progress-dot">D</div>
+      <div class="progress-label">Type D</div>
+    </div>
+    <div class="progress-line"></div>
+    <div class="progress-step" data-step="6" onclick="goTo(6)">
+      <div class="progress-dot">✓</div>
+      <div class="progress-label">Review</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       STEP 0 — Company Information
+  ══════════════════════════════════════════ -->
+  <div class="section-card active" id="step-0">
+     <div class="section-header">
+      <div class="section-icon">🏢</div>
+      <div>
+        <div class="section-label" style="color: #092676; font-weight: 900;">SECTION 1</div>
+        <div class="section-title">Company Information</div>
+        <div class="section-desc">Basic details about your organisation so we can make the best match.</div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="info-grid">
+        <div class="info-field">
+          <label>Company Name *</label>
+          <input class="styled-input" style="max-width:100%" placeholder="e.g. Acme Technologies Ltd">
+        </div>
+        <div class="info-field">
+          <label>Industry / Sector *</label>
+          <select class="styled-select" style="max-width:100%">
+            <option value="">Select industry…</option>
+            <option>Fintech / Financial Services</option>
+            <option>Healthtech / Healthcare</option>
+            <option>E-commerce / Retail</option>
+            <option>Edtech / Education</option>
+            <option>Logistics / Supply Chain</option>
+            <option>Media / Entertainment</option>
+            <option>SaaS / Software</option>
+            <option>Consulting / Professional Services</option>
+            <option>Government / Public Sector</option>
+            <option>NGO / Non-profit</option>
+            <option>Agriculture / Agritech</option>
+            <option>Real Estate / Proptech</option>
+            <option>Manufacturing / Industrial</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="info-field">
+          <label>Company Size</label>
+          <select class="styled-select" style="max-width:100%">
+            <option value="">Select size…</option>
+            <option>1–10 employees (Micro)</option>
+            <option>11–50 employees (Small)</option>
+            <option>51–200 employees (Medium)</option>
+            <option>201–500 employees</option>
+            <option>500+ employees (Large)</option>
+          </select>
+        </div>
+        <div class="info-field">
+          <label>Contact Person Name *</label>
+          <input class="styled-input" style="max-width:100%" placeholder="Full name">
+        </div>
+        <div class="info-field">
+          <label>Contact Email *</label>
+          <input class="styled-input" style="max-width:100%" type="email" placeholder="email@company.com">
+        </div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Internship Programme Type <span class="badge badge-single">Select one</span></div>
+      <div class="field-hint">What is the primary nature of this internship?</div>
+      <div class="options-grid">
+        <div class="opt-item radio"><input type="radio" name="prog_type" id="pt1"><label for="pt1"><span class="opt-radio"></span>Paid internship</label></div>
+        <div class="opt-item radio"><input type="radio" name="prog_type" id="pt2"><label for="pt2"><span class="opt-radio"></span>Unpaid internship</label></div>
+        <div class="opt-item radio"><input type="radio" name="prog_type" id="pt3"><label for="pt3"><span class="opt-radio"></span>Stipend-based internship</label></div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Internship Duration <span class="badge badge-single">Select one</span></div>
+      <div class="options-grid narrow">
+        <div class="opt-item radio"><input type="radio" name="duration" id="d1"><label for="d1"><span class="opt-radio"></span>3 months</label></div>
+        <div class="opt-item radio"><input type="radio" name="duration" id="d2"><label for="d2"><span class="opt-radio"></span>6 months</label></div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Work Mode <span class="badge badge-multi">Multi-select</span></div>
+      <div class="options-grid narrow">
+        <div class="opt-item"><input type="checkbox" id="wm1"><label for="wm1"><span class="opt-check"></span>Fully remote</label></div>
+        <div class="opt-item"><input type="checkbox" id="wm2"><label for="wm2"><span class="opt-check"></span>Hybrid (2–3 days onsite)</label></div>
+        <div class="opt-item"><input type="checkbox" id="wm3"><label for="wm3"><span class="opt-check"></span>Fully onsite</label></div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Number of Interns You Are Looking to Hire <span class="badge badge-single">Select one</span></div>
+      <div class="options-grid narrow">
+        <div class="opt-item radio"><input type="radio" name="num_interns" id="ni1"><label for="ni1"><span class="opt-radio"></span>1 intern</label></div>
+        <div class="opt-item radio"><input type="radio" name="num_interns" id="ni2"><label for="ni2"><span class="opt-radio"></span>2–3 interns</label></div>
+        <div class="opt-item radio"><input type="radio" name="num_interns" id="ni3"><label for="ni3"><span class="opt-radio"></span>4–6 interns</label></div>
+        <div class="opt-item radio"><input type="radio" name="num_interns" id="ni4"><label for="ni4"><span class="opt-radio"></span>7–10 interns</label></div>
+        <div class="opt-item radio"><input type="radio" name="num_interns" id="ni5"><label for="ni5"><span class="opt-radio"></span>10+ interns</label></div>
+      </div>
+    </div>
+
+    <div class="form-nav">
+      <span></span>
+      <button class="btn btn-primary" onclick="goTo(1)" style="background-color: #092676; border-radius: 25px;">Next: Select Categories →</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       STEP 1 — Category Selection
+  ══════════════════════════════════════════ -->
+  <div class="section-card" id="step-1">
+     <div class="section-header">
+      <div class="section-icon">🗂️</div>
+      <div>
+        <div class="section-label" style="color: #092676; font-weight: 900;">SECTION 2</div>
+        <div class="section-title">Which intern categories are you hiring?</div>
+        <div class="section-desc" style="color: red;">Select all categories that apply. You will fill in details for each selected category.</div>
+      </div>
+    </div>
+    <div class="field-group">
+      <div class="cat-select-grid">
+        <label class="cat-card" id="card-a">
+          <input type="checkbox" id="sel-a" onchange="toggleCat('a')">
+          <div class="cat-card-icon">⚡</div>
+          <div class="cat-card-title">Type A — Technical Proficient</div>
+          <div class="cat-card-sub">Students with strong tech skills, significant projects, able to work independently.</div>
+        </label>
+        <label class="cat-card" id="card-b">
+          <input type="checkbox" id="sel-b" onchange="toggleCat('b')">
+          <div class="cat-card-icon">🌱</div>
+          <div class="cat-card-title">Type B — Technical Novice</div>
+          <div class="cat-card-sub">Foundational technical knowledge; needs mentorship and structured learning.</div>
+        </label>
+        <label class="cat-card" id="card-c">
+          <input type="checkbox" id="sel-c" onchange="toggleCat('c')">
+          <div class="cat-card-icon">🎨</div>
+          <div class="cat-card-title">Type C — Non-Technical Expert</div>
+          <div class="cat-card-sub">Proven non-technical skills in design, marketing, product, sales, etc.</div>
+        </label>
+        <label class="cat-card" id="card-d">
+          <input type="checkbox" id="sel-d" onchange="toggleCat('d')">
+          <div class="cat-card-icon">🚀</div>
+          <div class="cat-card-title">Type D — Non-Technical Novice</div>
+          <div class="cat-card-sub">Interested in non-technical roles, limited experience, eager to learn.</div>
+        </label>
+      </div>
+    </div>
+    <div class="form-nav">
+      <button class="btn btn-ghost" onclick="goTo(0)" style="border-radius: 25px;">← Back</button>
+      <button class="btn btn-primary" onclick="goTo(2)" style="background-color: #092676; border-radius: 25px;">Next: Category Details →</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       STEP 2 — Category A
+  ══════════════════════════════════════════ -->
+  <div class="section-card cat-a" id="step-2">
+    <div class="section-header" >
+      <div class="section-icon">⚡</div>
+      <div>
+        <div class="section-label" style="color: #a09aff;">Type A</div>
+        <div class="section-title">Technical Proficient</div>
+        <div class="section-desc">Students with strong technical skills, substantial projects, and ability to contribute independently.</div>
+      </div>
+    </div>
+
+    <!-- Roles -->
+    <div class="field-group">
+      <div class="field-label">Roles Available <span class="badge badge-multi">Multi-select</span></div>
+      <div class="field-hint">Select all roles you are open to filling in this category.</div>
+      <div class="options-grid">
+        <div class="opt-item"><input type="checkbox" id="a_r1"><label for="a_r1"><span class="opt-check"></span>Frontend Developer</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_r2"><label for="a_r2"><span class="opt-check"></span>Backend Developer</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_r3"><label for="a_r3"><span class="opt-check"></span>Full Stack Developer</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_r4"><label for="a_r4"><span class="opt-check"></span>Mobile Developer (iOS/Android)</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_r5"><label for="a_r5"><span class="opt-check"></span>DevOps Engineer</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_r6"><label for="a_r6"><span class="opt-check"></span>Database Administrator</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_r7"><label for="a_r7"><span class="opt-check"></span>Data Engineer</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_r8"><label for="a_r8"><span class="opt-check"></span>Machine Learning Engineer</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_r9"><label for="a_r9"><span class="opt-check"></span>Embedded Systems Engineer</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_r10"><label for="a_r10"><span class="opt-check"></span>Security / Cybersecurity Intern</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_r11"><label for="a_r11"><span class="opt-check"></span>QA Automation Engineer</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_r12"><label for="a_r12"><span class="opt-check"></span>Cloud / Infrastructure Intern</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_r13"><label for="a_r13"><span class="opt-check"></span>Data Scientist</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_r14"><label for="a_r14"><span class="opt-check"></span>Blockchain / Web3 Developer</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_r15"><label for="a_r15"><span class="opt-check"></span>API / Integrations Developer</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_r16"><label for="a_r16"><span class="opt-check"></span>Other</label></div>
+      </div>
+    </div>
+
+    <!-- Minimum experience -->
+    <div class="field-group">
+      <div class="field-label">Minimum Experience Level <span class="badge badge-single">Select one</span></div>
+      <div class="options-grid">
+        <div class="opt-item radio"><input type="radio" name="a_exp" id="ae1"><label for="ae1"><span class="opt-radio"></span>1+ significant personal projects</label></div>
+        <div class="opt-item radio"><input type="radio" name="a_exp" id="ae2"><label for="ae2"><span class="opt-radio"></span>2+ significant projects</label></div>
+        <div class="opt-item radio"><input type="radio" name="a_exp" id="ae3"><label for="ae3"><span class="opt-radio"></span>Previous internship experience</label></div>
+        <div class="opt-item radio"><input type="radio" name="a_exp" id="ae4"><label for="ae4"><span class="opt-radio"></span>Open-source contributions</label></div>
+        <div class="opt-item radio"><input type="radio" name="a_exp" id="ae5"><label for="ae5"><span class="opt-radio"></span>No strict requirement</label></div>
+      </div>
+    </div>
+
+    <!-- Technical Skills -->
+    <div class="field-group">
+      <div class="field-label">Required Technical Skills <span class="badge badge-multi">Multi-select</span></div>
+      <div class="field-hint">Select all skills relevant to your roles.</div>
+      <div class="sub-group">
+        <div class="sub-group-label">Frontend</div>
+        <div class="options-grid narrow">
+          <div class="opt-item"><input type="checkbox" id="as_f1"><label for="as_f1"><span class="opt-check"></span>React</label></div>
+          <div class="opt-item"><input type="checkbox" id="as_f2"><label for="as_f2"><span class="opt-check"></span>Angular</label></div>
+          <div class="opt-item"><input type="checkbox" id="as_f3"><label for="as_f3"><span class="opt-check"></span>Vue.js</label></div>
+          <div class="opt-item"><input type="checkbox" id="as_f4"><label for="as_f4"><span class="opt-check"></span>HTML/CSS</label></div>
+          <div class="opt-item"><input type="checkbox" id="as_f5"><label for="as_f5"><span class="opt-check"></span>JavaScript / TypeScript</label></div>
+          <div class="opt-item"><input type="checkbox" id="as_f6"><label for="as_f6"><span class="opt-check"></span>Next.js / Nuxt.js</label></div>
+          <div class="opt-item"><input type="checkbox" id="as_f7"><label for="as_f7"><span class="opt-check"></span>Tailwind CSS</label></div>
+        </div>
+      </div>
+      <div class="sub-group">
+        <div class="sub-group-label">Backend</div>
+        <div class="options-grid narrow">
+          <div class="opt-item"><input type="checkbox" id="as_b1"><label for="as_b1"><span class="opt-check"></span>Node.js</label></div>
+          <div class="opt-item"><input type="checkbox" id="as_b2"><label for="as_b2"><span class="opt-check"></span>Python (Django/Flask/FastAPI)</label></div>
+          <div class="opt-item"><input type="checkbox" id="as_b3"><label for="as_b3"><span class="opt-check"></span>Java (Spring)</label></div>
+          <div class="opt-item"><input type="checkbox" id="as_b4"><label for="as_b4"><span class="opt-check"></span>C#/.NET</label></div>
+          <div class="opt-item"><input type="checkbox" id="as_b5"><label for="as_b5"><span class="opt-check"></span>Go</label></div>
+          <div class="opt-item"><input type="checkbox" id="as_b6"><label for="as_b6"><span class="opt-check"></span>PHP / Laravel</label></div>
+          <div class="opt-item"><input type="checkbox" id="as_b7"><label for="as_b7"><span class="opt-check"></span>Ruby on Rails</label></div>
+          <div class="opt-item"><input type="checkbox" id="as_b8"><label for="as_b8"><span class="opt-check"></span>Rust</label></div>
+        </div>
+      </div>
+      <div class="sub-group">
+        <div class="sub-group-label">Database</div>
+        <div class="options-grid narrow">
+          <div class="opt-item"><input type="checkbox" id="as_d1"><label for="as_d1"><span class="opt-check"></span>PostgreSQL</label></div>
+          <div class="opt-item"><input type="checkbox" id="as_d2"><label for="as_d2"><span class="opt-check"></span>MySQL</label></div>
+          <div class="opt-item"><input type="checkbox" id="as_d3"><label for="as_d3"><span class="opt-check"></span>MongoDB</label></div>
+          <div class="opt-item"><input type="checkbox" id="as_d4"><label for="as_d4"><span class="opt-check"></span>Firebase / Firestore</label></div>
+          <div class="opt-item"><input type="checkbox" id="as_d5"><label for="as_d5"><span class="opt-check"></span>Redis</label></div>
+          <div class="opt-item"><input type="checkbox" id="as_d6"><label for="as_d6"><span class="opt-check"></span>Elasticsearch</label></div>
+        </div>
+      </div>
+      <div class="sub-group">
+        <div class="sub-group-label">Cloud / DevOps</div>
+        <div class="options-grid narrow">
+          <div class="opt-item"><input type="checkbox" id="as_c1"><label for="as_c1"><span class="opt-check"></span>AWS</label></div>
+          <div class="opt-item"><input type="checkbox" id="as_c2"><label for="as_c2"><span class="opt-check"></span>Azure</label></div>
+          <div class="opt-item"><input type="checkbox" id="as_c3"><label for="as_c3"><span class="opt-check"></span>GCP</label></div>
+          <div class="opt-item"><input type="checkbox" id="as_c4"><label for="as_c4"><span class="opt-check"></span>Docker</label></div>
+          <div class="opt-item"><input type="checkbox" id="as_c5"><label for="as_c5"><span class="opt-check"></span>Kubernetes</label></div>
+          <div class="opt-item"><input type="checkbox" id="as_c6"><label for="as_c6"><span class="opt-check"></span>CI/CD (GitHub Actions / Jenkins)</label></div>
+          <div class="opt-item"><input type="checkbox" id="as_c7"><label for="as_c7"><span class="opt-check"></span>Terraform / IaC</label></div>
+        </div>
+      </div>
+      <div class="sub-group">
+        <div class="sub-group-label">Mobile</div>
+        <div class="options-grid narrow">
+          <div class="opt-item"><input type="checkbox" id="as_m1"><label for="as_m1"><span class="opt-check"></span>Flutter</label></div>
+          <div class="opt-item"><input type="checkbox" id="as_m2"><label for="as_m2"><span class="opt-check"></span>React Native</label></div>
+          <div class="opt-item"><input type="checkbox" id="as_m3"><label for="as_m3"><span class="opt-check"></span>Swift (iOS)</label></div>
+          <div class="opt-item"><input type="checkbox" id="as_m4"><label for="as_m4"><span class="opt-check"></span>Kotlin (Android)</label></div>
+        </div>
+      </div>
+      <div class="sub-group">
+        <div class="sub-group-label">Other / General</div>
+        <div class="options-grid narrow">
+          <div class="opt-item"><input type="checkbox" id="as_o1"><label for="as_o1"><span class="opt-check"></span>Git / Version Control</label></div>
+          <div class="opt-item"><input type="checkbox" id="as_o2"><label for="as_o2"><span class="opt-check"></span>REST APIs</label></div>
+          <div class="opt-item"><input type="checkbox" id="as_o3"><label for="as_o3"><span class="opt-check"></span>GraphQL</label></div>
+          <div class="opt-item"><input type="checkbox" id="as_o4"><label for="as_o4"><span class="opt-check"></span>AI / ML frameworks (TensorFlow, PyTorch)</label></div>
+          <div class="opt-item"><input type="checkbox" id="as_o5"><label for="as_o5"><span class="opt-check"></span>Microservices / Architecture</label></div>
+          <div class="opt-item"><input type="checkbox" id="as_o6"><label for="as_o6"><span class="opt-check"></span>Web3 / Smart Contracts (Solidity)</label></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key responsibilities -->
+    <div class="field-group">
+      <div class="field-label">Key Responsibilities (select top 3–7) <span class="badge badge-multi">Multi-select</span></div>
+      <div class="options-grid wide">
+        <div class="opt-item"><input type="checkbox" id="a_kr1"><label for="a_kr1"><span class="opt-check"></span>Architect and design new features</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_kr2"><label for="a_kr2"><span class="opt-check"></span>Build RESTful / GraphQL APIs</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_kr3"><label for="a_kr3"><span class="opt-check"></span>Optimise database queries and performance</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_kr4"><label for="a_kr4"><span class="opt-check"></span>Write unit and integration tests</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_kr5"><label for="a_kr5"><span class="opt-check"></span>Lead or participate in code reviews</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_kr6"><label for="a_kr6"><span class="opt-check"></span>Deploy and monitor applications</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_kr7"><label for="a_kr7"><span class="opt-check"></span>Debug complex production issues</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_kr8"><label for="a_kr8"><span class="opt-check"></span>Document technical designs and decisions</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_kr9"><label for="a_kr9"><span class="opt-check"></span>Implement CI/CD pipelines</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_kr10"><label for="a_kr10"><span class="opt-check"></span>Conduct security audits / code hardening</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_kr11"><label for="a_kr11"><span class="opt-check"></span>Build and maintain data pipelines</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_kr12"><label for="a_kr12"><span class="opt-check"></span>Integrate third-party APIs and SDKs</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_kr13"><label for="a_kr13"><span class="opt-check"></span>Own and deliver features end-to-end</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_kr14"><label for="a_kr14"><span class="opt-check"></span>Contribute to open-source or internal libraries</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_kr15"><label for="a_kr15"><span class="opt-check"></span>Participate in sprint planning / agile ceremonies</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_kr16"><label for="a_kr16"><span class="opt-check"></span>Prototype and run technical experiments</label></div>
+      </div>
+    </div>
+
+    <!-- Autonomy -->
+    <div class="field-group">
+      <div class="field-label">Autonomy Expectation <span class="badge badge-single">Select one</span></div>
+      <div class="options-grid">
+        <div class="opt-item radio"><input type="radio" name="a_auto" id="aa1"><label for="aa1"><span class="opt-radio"></span>Works fully independently — check-ins weekly or less</label></div>
+        <div class="opt-item radio"><input type="radio" name="a_auto" id="aa2"><label for="aa2"><span class="opt-radio"></span>Works independently with weekly structured check-ins</label></div>
+        <div class="opt-item radio"><input type="radio" name="a_auto" id="aa3"><label for="aa3"><span class="opt-radio"></span>Some guidance needed — daily async updates</label></div>
+        <div class="opt-item radio"><input type="radio" name="a_auto" id="aa4"><label for="aa4"><span class="opt-radio"></span>Regular guidance — 1–2 hours/day sync time</label></div>
+      </div>
+    </div>
+
+    <!-- How they will be supported -->
+    <div class="field-group">
+      <div class="field-label">How Will You Support This Intern? <span class="badge badge-multi">Multi-select</span></div>
+      <div class="field-hint">Select all support structures you will provide for Category A interns.</div>
+      <div class="options-grid wide">
+        <div class="opt-item"><input type="checkbox" id="a_sup1"><label for="a_sup1"><span class="opt-check"></span>Assigned dedicated senior engineer as mentor</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_sup2"><label for="a_sup2"><span class="opt-check"></span>Weekly 1-on-1 progress meetings</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_sup3"><label for="a_sup3"><span class="opt-check"></span>Peer buddy system within the team</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_sup4"><label for="a_sup4"><span class="opt-check"></span>Access to internal documentation and wikis</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_sup5"><label for="a_sup5"><span class="opt-check"></span>Codebase walkthrough and onboarding session</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_sup6"><label for="a_sup6"><span class="opt-check"></span>PR/code review feedback on every submission</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_sup7"><label for="a_sup7"><span class="opt-check"></span>Access to paid learning platforms (Udemy, Pluralsight, etc.)</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_sup8"><label for="a_sup8"><span class="opt-check"></span>Slack / Teams channel for quick Q&A</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_sup9"><label for="a_sup9"><span class="opt-check"></span>Mid-internship performance review</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_sup10"><label for="a_sup10"><span class="opt-check"></span>Structured 30-60-90 day goals</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_sup11"><label for="a_sup11"><span class="opt-check"></span>Participation in team stand-ups and sprints</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_sup12"><label for="a_sup12"><span class="opt-check"></span>End-of-internship written reference / certificate</label></div>
+      </div>
+    </div>
+
+    <!-- Portfolio evidence -->
+    <div class="field-group">
+      <div class="field-label">Portfolio Evidence Required <span class="badge badge-multi">Multi-select</span></div>
+      <div class="options-grid">
+        <div class="opt-item"><input type="checkbox" id="a_pe1"><label for="a_pe1"><span class="opt-check"></span>GitHub profile with active repos</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_pe2"><label for="a_pe2"><span class="opt-check"></span>Live deployed project URL</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_pe3"><label for="a_pe3"><span class="opt-check"></span>Code samples / snippets</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_pe4"><label for="a_pe4"><span class="opt-check"></span>Technical blog or write-ups</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_pe5"><label for="a_pe5"><span class="opt-check"></span>Open-source contributions</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_pe6"><label for="a_pe6"><span class="opt-check"></span>Hackathon project</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_pe7"><label for="a_pe7"><span class="opt-check"></span>Not required</label></div>
+      </div>
+    </div>
+
+    <!-- Tools -->
+    <div class="field-group">
+      <div class="field-label">Tools Intern Will Use <span class="badge badge-multi">Multi-select</span></div>
+      <div class="options-grid narrow">
+        <div class="opt-item"><input type="checkbox" id="a_t1"><label for="a_t1"><span class="opt-check"></span>Jira</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_t2"><label for="a_t2"><span class="opt-check"></span>Linear</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_t3"><label for="a_t3"><span class="opt-check"></span>Trello</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_t4"><label for="a_t4"><span class="opt-check"></span>Slack</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_t5"><label for="a_t5"><span class="opt-check"></span>Figma</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_t6"><label for="a_t6"><span class="opt-check"></span>Notion</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_t7"><label for="a_t7"><span class="opt-check"></span>Confluence</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_t8"><label for="a_t8"><span class="opt-check"></span>VS Code</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_t9"><label for="a_t9"><span class="opt-check"></span>IntelliJ / JetBrains</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_t10"><label for="a_t10"><span class="opt-check"></span>GitHub / GitLab</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_t11"><label for="a_t11"><span class="opt-check"></span>Postman</label></div>
+        <div class="opt-item"><input type="checkbox" id="a_t12"><label for="a_t12"><span class="opt-check"></span>Datadog / Sentry</label></div>
+      </div>
+    </div>
+
+    <!-- Weekly commitment -->
+    <div class="field-group">
+      <div class="field-label">Typical Weekly Commitment <span class="badge badge-single">Select one</span></div>
+      <div class="options-grid narrow">
+        <div class="opt-item radio"><input type="radio" name="a_wc" id="awc1"><label for="awc1"><span class="opt-radio"></span>10–15 hours/week</label></div>
+        <div class="opt-item radio"><input type="radio" name="a_wc" id="awc2"><label for="awc2"><span class="opt-radio"></span>16–20 hours/week</label></div>
+        <div class="opt-item radio"><input type="radio" name="a_wc" id="awc3"><label for="awc3"><span class="opt-radio"></span>21–30 hours/week</label></div>
+        <div class="opt-item radio"><input type="radio" name="a_wc" id="awc4"><label for="awc4"><span class="opt-radio"></span>30+ hours/week (full-time)</label></div>
+      </div>
+    </div>
+
+    <div class="form-nav">
+      <button class="btn btn-ghost" onclick="goTo(1)">← Back</button>
+      <button class="btn btn-primary" onclick="goTo(3)" style="background-color: #092676; border-radius: 25px;">Next: Category B →</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       STEP 3 — Category B
+  ══════════════════════════════════════════ -->
+  <div class="section-card cat-b" id="step-3">
+    <div class="section-header">
+      <div class="section-icon">🌱</div>
+      <div>
+        <div class="section-label">Type B</div>
+        <div class="section-title">Technical Novice</div>
+        <div class="section-desc">Students with foundational technical knowledge who need mentorship and structured learning.</div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Roles Available <span class="badge badge-multi">Multi-select</span></div>
+      <div class="options-grid">
+        <div class="opt-item"><input type="checkbox" id="b_r1"><label for="b_r1"><span class="opt-check"></span>Junior Frontend Intern</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_r2"><label for="b_r2"><span class="opt-check"></span>Junior Backend Intern</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_r3"><label for="b_r3"><span class="opt-check"></span>QA / Testing Intern</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_r4"><label for="b_r4"><span class="opt-check"></span>Technical Support Intern</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_r5"><label for="b_r5"><span class="opt-check"></span>DevOps Assistant</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_r6"><label for="b_r6"><span class="opt-check"></span>Data Analyst Intern</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_r7"><label for="b_r7"><span class="opt-check"></span>Full Stack Assistant</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_r8"><label for="b_r8"><span class="opt-check"></span>Junior Mobile Developer</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_r9"><label for="b_r9"><span class="opt-check"></span>IT Support Intern</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_r10"><label for="b_r10"><span class="opt-check"></span>Documentation Intern</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_r11"><label for="b_r11"><span class="opt-check"></span>Research & Development Assistant</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_r12"><label for="b_r12"><span class="opt-check"></span>Other</label></div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Minimum Knowledge Level <span class="badge badge-single">Select one</span></div>
+      <div class="options-grid wide">
+        <div class="opt-item radio"><input type="radio" name="b_know" id="bk1"><label for="bk1"><span class="opt-radio"></span>Completed introductory programming course</label></div>
+        <div class="opt-item radio"><input type="radio" name="b_know" id="bk2"><label for="bk2"><span class="opt-radio"></span>Familiar with basic syntax (loops, functions)</label></div>
+        <div class="opt-item radio"><input type="radio" name="b_know" id="bk3"><label for="bk3"><span class="opt-radio"></span>Has built a small personal project</label></div>
+        <div class="opt-item radio"><input type="radio" name="b_know" id="bk4"><label for="bk4"><span class="opt-radio"></span>No prior experience — willing to learn</label></div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Preferred Programming Languages <span class="badge badge-multi">Multi-select</span></div>
+      <div class="options-grid narrow">
+        <div class="opt-item"><input type="checkbox" id="b_pl1"><label for="b_pl1"><span class="opt-check"></span>Python</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_pl2"><label for="b_pl2"><span class="opt-check"></span>JavaScript</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_pl3"><label for="b_pl3"><span class="opt-check"></span>Java</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_pl4"><label for="b_pl4"><span class="opt-check"></span>C++</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_pl5"><label for="b_pl5"><span class="opt-check"></span>C#</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_pl6"><label for="b_pl6"><span class="opt-check"></span>HTML/CSS</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_pl7"><label for="b_pl7"><span class="opt-check"></span>SQL</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_pl8"><label for="b_pl8"><span class="opt-check"></span>No preference</label></div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Learning Goals for This Intern <span class="badge badge-multi">Multi-select</span></div>
+      <div class="options-grid wide">
+        <div class="opt-item"><input type="checkbox" id="b_lg1"><label for="b_lg1"><span class="opt-check"></span>Gain practical experience with version control (Git)</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_lg2"><label for="b_lg2"><span class="opt-check"></span>Learn to write unit and integration tests</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_lg3"><label for="b_lg3"><span class="opt-check"></span>Understand CI/CD pipelines</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_lg4"><label for="b_lg4"><span class="opt-check"></span>Improve debugging and problem-solving skills</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_lg5"><label for="b_lg5"><span class="opt-check"></span>Learn a new framework or library</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_lg6"><label for="b_lg6"><span class="opt-check"></span>Contribute meaningfully to an existing codebase</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_lg7"><label for="b_lg7"><span class="opt-check"></span>Learn agile/scrum development workflows</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_lg8"><label for="b_lg8"><span class="opt-check"></span>Understand database design and querying</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_lg9"><label for="b_lg9"><span class="opt-check"></span>Build and deploy a real feature</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_lg10"><label for="b_lg10"><span class="opt-check"></span>Learn API integration and REST principles</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_lg11"><label for="b_lg11"><span class="opt-check"></span>Develop code review and collaboration habits</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_lg12"><label for="b_lg12"><span class="opt-check"></span>Understand cloud deployment basics</label></div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Tasks the Intern Will Work On <span class="badge badge-multi">Multi-select</span></div>
+      <div class="options-grid wide">
+        <div class="opt-item"><input type="checkbox" id="b_task1"><label for="b_task1"><span class="opt-check"></span>Fix documented bugs and issues</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_task2"><label for="b_task2"><span class="opt-check"></span>Write and update technical documentation</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_task3"><label for="b_task3"><span class="opt-check"></span>Assist with manual testing and QA</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_task4"><label for="b_task4"><span class="opt-check"></span>Set up local development environments</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_task5"><label for="b_task5"><span class="opt-check"></span>Pair programme with a senior developer</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_task6"><label for="b_task6"><span class="opt-check"></span>Create basic UI components</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_task7"><label for="b_task7"><span class="opt-check"></span>Write test cases and automated scripts</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_task8"><label for="b_task8"><span class="opt-check"></span>Conduct code research and create comparison reports</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_task9"><label for="b_task9"><span class="opt-check"></span>Assist with data entry, cleaning, or analysis</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_task10"><label for="b_task10"><span class="opt-check"></span>Build simple scripts to automate repetitive tasks</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_task11"><label for="b_task11"><span class="opt-check"></span>Participate in code review as observer/reviewer</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_task12"><label for="b_task12"><span class="opt-check"></span>Work on a small self-contained feature with supervision</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_task13"><label for="b_task13"><span class="opt-check"></span>Research and summarise technical topics for the team</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_task14"><label for="b_task14"><span class="opt-check"></span>Shadow senior developers in planning and design sessions</label></div>
+      </div>
+    </div>
+
+    <!-- Mentorship format HOW -->
+    <div class="field-group">
+      <div class="field-label">How Will You Mentor This Intern? <span class="badge badge-multi">Multi-select</span></div>
+      <div class="field-hint">Select all mentorship methods your company will actively implement.</div>
+      <div class="options-grid wide">
+        <div class="opt-item"><input type="checkbox" id="b_men1"><label for="b_men1"><span class="opt-check"></span>Daily stand-up participation</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_men2"><label for="b_men2"><span class="opt-check"></span>Weekly structured 1-on-1 with assigned mentor</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_men3"><label for="b_men3"><span class="opt-check"></span>Pair programming sessions (at least 2x per week)</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_men4"><label for="b_men4"><span class="opt-check"></span>Code review with written explanatory feedback on every PR</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_men5"><label for="b_men5"><span class="opt-check"></span>Structured onboarding plan with clear milestones</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_men6"><label for="b_men6"><span class="opt-check"></span>Assigned learning path / curriculum</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_men7"><label for="b_men7"><span class="opt-check"></span>Mentorship via async chat (Slack/Teams) for quick questions</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_men8"><label for="b_men8"><span class="opt-check"></span>Regular demos where intern presents their progress</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_men9"><label for="b_men9"><span class="opt-check"></span>Access to internal tech talks and knowledge-sharing sessions</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_men10"><label for="b_men10"><span class="opt-check"></span>Mid-point and end-of-internship performance review</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_men11"><label for="b_men11"><span class="opt-check"></span>Rotational exposure to different parts of the tech stack</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_men12"><label for="b_men12"><span class="opt-check"></span>Access to paid learning platforms (Udemy, Coursera, etc.)</label></div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Mentor Availability <span class="badge badge-select"></span></div>
+      <select class="styled-select">
+        <option value="">Select availability…</option>
+        <option>Mentor available 1–2 hours/week</option>
+        <option>Mentor available 3–5 hours/week</option>
+        <option>Mentor available 6+ hours/week</option>
+        <option>Dedicated full-time mentor</option>
+      </select>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Success Criteria for this Intern <span class="badge badge-multi">Multi-select</span></div>
+      <div class="options-grid wide">
+        <div class="opt-item"><input type="checkbox" id="b_sc1"><label for="b_sc1"><span class="opt-check"></span>Completes onboarding checklist within first 2 weeks</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_sc2"><label for="b_sc2"><span class="opt-check"></span>Successfully resolves a defined number of bugs</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_sc3"><label for="b_sc3"><span class="opt-check"></span>Delivers a small feature with supervision</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_sc4"><label for="b_sc4"><span class="opt-check"></span>Demonstrates improved proficiency in chosen tools</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_sc5"><label for="b_sc5"><span class="opt-check"></span>Passes a technical knowledge checkpoint at mid-point</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_sc6"><label for="b_sc6"><span class="opt-check"></span>Receives positive peer/mentor feedback</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_sc7"><label for="b_sc7"><span class="opt-check"></span>Maintains consistent attendance and communication</label></div>
+        <div class="opt-item"><input type="checkbox" id="b_sc8"><label for="b_sc8"><span class="opt-check"></span>Builds a personal portfolio project during the programme</label></div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Portfolio Evidence Required <span class="badge badge-single">Select one</span></div>
+      <div class="options-grid">
+        <div class="opt-item radio"><input type="radio" name="b_pe" id="bpe1"><label for="bpe1"><span class="opt-radio"></span>GitHub profile (any level of activity)</label></div>
+        <div class="opt-item radio"><input type="radio" name="b_pe" id="bpe2"><label for="bpe2"><span class="opt-radio"></span>Course project or school assignment</label></div>
+        <div class="opt-item radio"><input type="radio" name="b_pe" id="bpe3"><label for="bpe3"><span class="opt-radio"></span>No portfolio required — statement of interest sufficient</label></div>
+        <div class="opt-item radio"><input type="radio" name="b_pe" id="bpe4"><label for="bpe4"><span class="opt-radio"></span>Any evidence of self-directed learning (certificates, courses)</label></div>
+      </div>
+    </div>
+
+    <div class="form-nav">
+      <button class="btn btn-ghost" onclick="goTo(2)">← Back</button>
+      <button class="btn btn-primary" onclick="goTo(4)" style="background-color: #092676; border-radius: 25px;">Next: Category C →</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       STEP 4 — Category C
+  ══════════════════════════════════════════ -->
+  <div class="section-card cat-c" id="step-4">
+    <div class="section-header">
+      <div class="section-icon">🎨</div>
+      <div>
+        <div class="section-label">Type C</div>
+        <div class="section-title">Non-Technical Expert</div>
+        <div class="section-desc">Students with proven non-technical skills in design, marketing, product, sales, etc., and a track record of delivering results.</div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Roles Available <span class="badge badge-multi">Multi-select</span></div>
+      <div class="options-grid">
+        <div class="opt-item"><input type="checkbox" id="c_r1"><label for="c_r1"><span class="opt-check"></span>UI/UX Designer</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_r2"><label for="c_r2"><span class="opt-check"></span>Product Designer</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_r3"><label for="c_r3"><span class="opt-check"></span>Digital Marketing Specialist</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_r4"><label for="c_r4"><span class="opt-check"></span>SEO Specialist</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_r5"><label for="c_r5"><span class="opt-check"></span>Content Writer / Strategist</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_r6"><label for="c_r6"><span class="opt-check"></span>Product Manager Assistant</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_r7"><label for="c_r7"><span class="opt-check"></span>Sales Development Rep (SDR)</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_r8"><label for="c_r8"><span class="opt-check"></span>Customer Success Intern</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_r9"><label for="c_r9"><span class="opt-check"></span>Data Analyst (non-technical)</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_r10"><label for="c_r10"><span class="opt-check"></span>Project Manager Assistant</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_r11"><label for="c_r11"><span class="opt-check"></span>Brand / Communications Intern</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_r12"><label for="c_r12"><span class="opt-check"></span>Business Analyst Intern</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_r13"><label for="c_r13"><span class="opt-check"></span>HR / People Operations Intern</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_r14"><label for="c_r14"><span class="opt-check"></span>Finance / Operations Intern</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_r15"><label for="c_r15"><span class="opt-check"></span>Research Analyst</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_r16"><label for="c_r16"><span class="opt-check"></span>Other</label></div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Core Competencies Required <span class="badge badge-multi">Multi-select</span></div>
+      <div class="sub-group">
+        <div class="sub-group-label" style="--accent:#ff6584;">Design</div>
+        <div class="options-grid narrow">
+          <div class="opt-item"><input type="checkbox" id="cc_d1"><label for="cc_d1"><span class="opt-check"></span>Figma</label></div>
+          <div class="opt-item"><input type="checkbox" id="cc_d2"><label for="cc_d2"><span class="opt-check"></span>Adobe XD</label></div>
+          <div class="opt-item"><input type="checkbox" id="cc_d3"><label for="cc_d3"><span class="opt-check"></span>Sketch</label></div>
+          <div class="opt-item"><input type="checkbox" id="cc_d4"><label for="cc_d4"><span class="opt-check"></span>Wireframing</label></div>
+          <div class="opt-item"><input type="checkbox" id="cc_d5"><label for="cc_d5"><span class="opt-check"></span>Prototyping</label></div>
+          <div class="opt-item"><input type="checkbox" id="cc_d6"><label for="cc_d6"><span class="opt-check"></span>User Research</label></div>
+          <div class="opt-item"><input type="checkbox" id="cc_d7"><label for="cc_d7"><span class="opt-check"></span>Canva / Visual design</label></div>
+          <div class="opt-item"><input type="checkbox" id="cc_d8"><label for="cc_d8"><span class="opt-check"></span>Motion design / Animation</label></div>
+          <div class="opt-item"><input type="checkbox" id="cc_d9"><label for="cc_d9"><span class="opt-check"></span>Brand identity design</label></div>
+        </div>
+      </div>
+      <div class="sub-group">
+        <div class="sub-group-label">Marketing</div>
+        <div class="options-grid narrow">
+          <div class="opt-item"><input type="checkbox" id="cc_m1"><label for="cc_m1"><span class="opt-check"></span>Social Media Management</label></div>
+          <div class="opt-item"><input type="checkbox" id="cc_m2"><label for="cc_m2"><span class="opt-check"></span>Google Analytics / GA4</label></div>
+          <div class="opt-item"><input type="checkbox" id="cc_m3"><label for="cc_m3"><span class="opt-check"></span>SEO / SEM</label></div>
+          <div class="opt-item"><input type="checkbox" id="cc_m4"><label for="cc_m4"><span class="opt-check"></span>Email Marketing</label></div>
+          <div class="opt-item"><input type="checkbox" id="cc_m5"><label for="cc_m5"><span class="opt-check"></span>Content Strategy</label></div>
+          <div class="opt-item"><input type="checkbox" id="cc_m6"><label for="cc_m6"><span class="opt-check"></span>Paid Ads (Meta, Google)</label></div>
+          <div class="opt-item"><input type="checkbox" id="cc_m7"><label for="cc_m7"><span class="opt-check"></span>Influencer / Community Marketing</label></div>
+          <div class="opt-item"><input type="checkbox" id="cc_m8"><label for="cc_m8"><span class="opt-check"></span>Market Research</label></div>
+        </div>
+      </div>
+      <div class="sub-group">
+        <div class="sub-group-label">Product</div>
+        <div class="options-grid narrow">
+          <div class="opt-item"><input type="checkbox" id="cc_p1"><label for="cc_p1"><span class="opt-check"></span>Agile / Scrum</label></div>
+          <div class="opt-item"><input type="checkbox" id="cc_p2"><label for="cc_p2"><span class="opt-check"></span>User Stories / Job Stories</label></div>
+          <div class="opt-item"><input type="checkbox" id="cc_p3"><label for="cc_p3"><span class="opt-check"></span>Roadmapping</label></div>
+          <div class="opt-item"><input type="checkbox" id="cc_p4"><label for="cc_p4"><span class="opt-check"></span>Competitive Analysis</label></div>
+          <div class="opt-item"><input type="checkbox" id="cc_p5"><label for="cc_p5"><span class="opt-check"></span>OKRs / KPI frameworks</label></div>
+          <div class="opt-item"><input type="checkbox" id="cc_p6"><label for="cc_p6"><span class="opt-check"></span>A/B Testing</label></div>
+        </div>
+      </div>
+      <div class="sub-group">
+        <div class="sub-group-label">Sales / CRM</div>
+        <div class="options-grid narrow">
+          <div class="opt-item"><input type="checkbox" id="cc_s1"><label for="cc_s1"><span class="opt-check"></span>HubSpot</label></div>
+          <div class="opt-item"><input type="checkbox" id="cc_s2"><label for="cc_s2"><span class="opt-check"></span>Salesforce</label></div>
+          <div class="opt-item"><input type="checkbox" id="cc_s3"><label for="cc_s3"><span class="opt-check"></span>Cold outreach / Email prospecting</label></div>
+          <div class="opt-item"><input type="checkbox" id="cc_s4"><label for="cc_s4"><span class="opt-check"></span>Lead qualification</label></div>
+          <div class="opt-item"><input type="checkbox" id="cc_s5"><label for="cc_s5"><span class="opt-check"></span>Customer interviews</label></div>
+          <div class="opt-item"><input type="checkbox" id="cc_s6"><label for="cc_s6"><span class="opt-check"></span>Pipeline management</label></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Experience Indicators <span class="badge badge-single">Select one</span></div>
+      <div class="options-grid wide">
+        <div class="opt-item radio"><input type="radio" name="c_exp" id="ce1"><label for="ce1"><span class="opt-radio"></span>Portfolio with 2+ completed projects</label></div>
+        <div class="opt-item radio"><input type="radio" name="c_exp" id="ce2"><label for="ce2"><span class="opt-radio"></span>Previous internship in a related field</label></div>
+        <div class="opt-item radio"><input type="radio" name="c_exp" id="ce3"><label for="ce3"><span class="opt-radio"></span>Managed a real campaign or delivered a project</label></div>
+        <div class="opt-item radio"><input type="radio" name="c_exp" id="ce4"><label for="ce4"><span class="opt-radio"></span>No strict requirement</label></div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Key Deliverables / Tasks <span class="badge badge-multi">Multi-select</span></div>
+      <div class="options-grid wide">
+        <div class="opt-item"><input type="checkbox" id="c_del1"><label for="c_del1"><span class="opt-check"></span>Create user flows and journey maps</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_del2"><label for="c_del2"><span class="opt-check"></span>Design high-fidelity mockups and prototypes</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_del3"><label for="c_del3"><span class="opt-check"></span>Run A/B tests and report findings</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_del4"><label for="c_del4"><span class="opt-check"></span>Manage and schedule social media content calendar</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_del5"><label for="c_del5"><span class="opt-check"></span>Write and publish blog posts / articles</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_del6"><label for="c_del6"><span class="opt-check"></span>Analyse and report on campaign metrics</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_del7"><label for="c_del7"><span class="opt-check"></span>Assist with product launch activities</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_del8"><label for="c_del8"><span class="opt-check"></span>Conduct user interviews and usability tests</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_del9"><label for="c_del9"><span class="opt-check"></span>Build and maintain sales pipeline in CRM</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_del10"><label for="c_del10"><span class="opt-check"></span>Create pitch decks and presentation materials</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_del11"><label for="c_del11"><span class="opt-check"></span>Develop and maintain the company content strategy</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_del12"><label for="c_del12"><span class="opt-check"></span>Research competitors and synthesise market insights</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_del13"><label for="c_del13"><span class="opt-check"></span>Design and send email marketing campaigns</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_del14"><label for="c_del14"><span class="opt-check"></span>Manage community or customer support channels</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_del15"><label for="c_del15"><span class="opt-check"></span>Create onboarding materials or help centre articles</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_del16"><label for="c_del16"><span class="opt-check"></span>Write and optimise SEO landing pages</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_del17"><label for="c_del17"><span class="opt-check"></span>Build reports and dashboards (Looker, Notion, etc.)</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_del18"><label for="c_del18"><span class="opt-check"></span>Cold outreach and lead generation</label></div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Autonomy Level <span class="badge badge-single">Select one</span></div>
+      <div class="options-grid wide">
+        <div class="opt-item radio"><input type="radio" name="c_auto" id="ca1"><label for="ca1"><span class="opt-radio"></span>Can work independently with minimal supervision</label></div>
+        <div class="opt-item radio"><input type="radio" name="c_auto" id="ca2"><label for="ca2"><span class="opt-radio"></span>Needs regular feedback (2–3x per week check-in)</label></div>
+        <div class="opt-item radio"><input type="radio" name="c_auto" id="ca3"><label for="ca3"><span class="opt-radio"></span>Needs daily direction and task assignment</label></div>
+      </div>
+    </div>
+
+    <!-- How they will support Cat C -->
+    <div class="field-group">
+      <div class="field-label">How Will You Support This Intern? <span class="badge badge-multi">Multi-select</span></div>
+      <div class="field-hint">Select all support mechanisms your company will put in place for Category C interns.</div>
+      <div class="options-grid wide">
+        <div class="opt-item"><input type="checkbox" id="c_sup1"><label for="c_sup1"><span class="opt-check"></span>Assigned a direct line manager or supervisor</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_sup2"><label for="c_sup2"><span class="opt-check"></span>Weekly creative / strategy review sessions</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_sup3"><label for="c_sup3"><span class="opt-check"></span>Access to brand guidelines, templates, and assets</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_sup4"><label for="c_sup4"><span class="opt-check"></span>Detailed briefs provided for every task</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_sup5"><label for="c_sup5"><span class="opt-check"></span>Portfolio-worthy real projects to work on</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_sup6"><label for="c_sup6"><span class="opt-check"></span>Access to paid tools (Figma Pro, HubSpot, Canva, etc.)</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_sup7"><label for="c_sup7"><span class="opt-check"></span>Bi-weekly performance feedback conversations</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_sup8"><label for="c_sup8"><span class="opt-check"></span>Exposure to client calls / stakeholder meetings</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_sup9"><label for="c_sup9"><span class="opt-check"></span>Intern's work presented to broader team or leadership</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_sup10"><label for="c_sup10"><span class="opt-check"></span>Written reference / certificate upon completion</label></div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Portfolio Evidence Required <span class="badge badge-multi">Multi-select</span></div>
+      <div class="options-grid">
+        <div class="opt-item"><input type="checkbox" id="c_pe1"><label for="c_pe1"><span class="opt-check"></span>Behance / Dribbble profile</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_pe2"><label for="c_pe2"><span class="opt-check"></span>Case studies</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_pe3"><label for="c_pe3"><span class="opt-check"></span>Writing samples</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_pe4"><label for="c_pe4"><span class="opt-check"></span>Campaign analytics report</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_pe5"><label for="c_pe5"><span class="opt-check"></span>Social media account they manage</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_pe6"><label for="c_pe6"><span class="opt-check"></span>Link to past project or live work</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_pe7"><label for="c_pe7"><span class="opt-check"></span>Not required</label></div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Tools Intern Will Use <span class="badge badge-multi">Multi-select</span></div>
+      <div class="options-grid narrow">
+        <div class="opt-item"><input type="checkbox" id="c_t1"><label for="c_t1"><span class="opt-check"></span>Figma</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_t2"><label for="c_t2"><span class="opt-check"></span>Miro</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_t3"><label for="c_t3"><span class="opt-check"></span>Jira / Asana</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_t4"><label for="c_t4"><span class="opt-check"></span>HubSpot</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_t5"><label for="c_t5"><span class="opt-check"></span>Google Analytics</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_t6"><label for="c_t6"><span class="opt-check"></span>Canva</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_t7"><label for="c_t7"><span class="opt-check"></span>Notion</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_t8"><label for="c_t8"><span class="opt-check"></span>Slack</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_t9"><label for="c_t9"><span class="opt-check"></span>Mailchimp / ConvertKit</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_t10"><label for="c_t10"><span class="opt-check"></span>Semrush / Ahrefs</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_t11"><label for="c_t11"><span class="opt-check"></span>Salesforce</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_t12"><label for="c_t12"><span class="opt-check"></span>Adobe Creative Suite</label></div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Mentor / Supervisor Availability <span class="badge badge-select">Dropdown</span></div>
+      <select class="styled-select">
+        <option value="">Select availability…</option>
+        <option>1–2 hours/week</option>
+        <option>3–5 hours/week</option>
+        <option>6+ hours/week</option>
+        <option>Available on-demand</option>
+      </select>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Success Criteria <span class="badge badge-multi">Multi-select</span></div>
+      <div class="options-grid wide">
+        <div class="opt-item"><input type="checkbox" id="c_sc1"><label for="c_sc1"><span class="opt-check"></span>Completes assigned tasks on time consistently</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_sc2"><label for="c_sc2"><span class="opt-check"></span>Shows improved proficiency in tools by end of internship</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_sc3"><label for="c_sc3"><span class="opt-check"></span>Takes initiative after initial guidance period</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_sc4"><label for="c_sc4"><span class="opt-check"></span>Delivers a small standalone project (e.g. social media plan)</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_sc5"><label for="c_sc5"><span class="opt-check"></span>Positive feedback from team and manager</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_sc6"><label for="c_sc6"><span class="opt-check"></span>Measurable improvement in KPI (e.g. engagement rate, leads)</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_sc7"><label for="c_sc7"><span class="opt-check"></span>Builds a portfolio-ready piece during internship</label></div>
+        <div class="opt-item"><input type="checkbox" id="c_sc8"><label for="c_sc8"><span class="opt-check"></span>Shows growth in communication and professionalism</label></div>
+      </div>
+    </div>
+
+    <div class="form-nav">
+      <button class="btn btn-ghost" onclick="goTo(3)">← Back</button>
+      <button class="btn btn-primary" onclick="goTo(5)" style="background-color: #092676; border-radius: 25px;">Next: Category D →</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       STEP 5 — Category D
+  ══════════════════════════════════════════ -->
+  <div class="section-card cat-d" id="step-5">
+    <div class="section-header">
+      <div class="section-icon">🚀</div>
+      <div>
+        <div class="section-label">Type D</div>
+        <div class="section-title">Non-Technical Novice</div>
+        <div class="section-desc">Students interested in non-technical roles with limited experience — they need guidance and are eager to learn.</div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Roles Available <span class="badge badge-multi">Multi-select</span></div>
+      <div class="options-grid">
+        <div class="opt-item"><input type="checkbox" id="d_r1"><label for="d_r1"><span class="opt-check"></span>Marketing Assistant</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_r2"><label for="d_r2"><span class="opt-check"></span>Junior UX Intern</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_r3"><label for="d_r3"><span class="opt-check"></span>Content Writer Intern</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_r4"><label for="d_r4"><span class="opt-check"></span>Social Media Assistant</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_r5"><label for="d_r5"><span class="opt-check"></span>Project Coordinator</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_r6"><label for="d_r6"><span class="opt-check"></span>Sales Support Intern</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_r7"><label for="d_r7"><span class="opt-check"></span>Customer Support Intern</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_r8"><label for="d_r8"><span class="opt-check"></span>Administrative Intern</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_r9"><label for="d_r9"><span class="opt-check"></span>Research Assistant</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_r10"><label for="d_r10"><span class="opt-check"></span>Operations Assistant</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_r11"><label for="d_r11"><span class="opt-check"></span>Events / Community Intern</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_r12"><label for="d_r12"><span class="opt-check"></span>Other</label></div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Basic Skills You Are Looking For <span class="badge badge-multi">Multi-select</span></div>
+      <div class="options-grid wide">
+        <div class="opt-item"><input type="checkbox" id="d_bs1"><label for="d_bs1"><span class="opt-check"></span>Strong written communication</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_bs2"><label for="d_bs2"><span class="opt-check"></span>Familiarity with social media platforms</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_bs3"><label for="d_bs3"><span class="opt-check"></span>Basic understanding of design principles</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_bs4"><label for="d_bs4"><span class="opt-check"></span>Interest in marketing or growth</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_bs5"><label for="d_bs5"><span class="opt-check"></span>Strong organisational skills</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_bs6"><label for="d_bs6"><span class="opt-check"></span>Proficiency in Microsoft Office / Google Workspace</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_bs7"><label for="d_bs7"><span class="opt-check"></span>Verbal communication and presentation confidence</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_bs8"><label for="d_bs8"><span class="opt-check"></span>Attention to detail and accuracy</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_bs9"><label for="d_bs9"><span class="opt-check"></span>Ability to work in a team environment</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_bs10"><label for="d_bs10"><span class="opt-check"></span>Basic research and analysis skills</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_bs11"><label for="d_bs11"><span class="opt-check"></span>Customer-first mindset</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_bs12"><label for="d_bs12"><span class="opt-check"></span>No strict requirements — attitude is what matters</label></div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Learning Objectives for This Intern <span class="badge badge-multi">Multi-select</span></div>
+      <div class="options-grid wide">
+        <div class="opt-item"><input type="checkbox" id="d_lo1"><label for="d_lo1"><span class="opt-check"></span>Learn to use Google Analytics and basic data dashboards</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_lo2"><label for="d_lo2"><span class="opt-check"></span>Understand agile methodology and working in sprints</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_lo3"><label for="d_lo3"><span class="opt-check"></span>Improve copywriting and persuasive writing skills</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_lo4"><label for="d_lo4"><span class="opt-check"></span>Gain experience with CRM tools</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_lo5"><label for="d_lo5"><span class="opt-check"></span>Develop project management skills</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_lo6"><label for="d_lo6"><span class="opt-check"></span>Learn professional email communication etiquette</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_lo7"><label for="d_lo7"><span class="opt-check"></span>Understand how a tech / startup business operates</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_lo8"><label for="d_lo8"><span class="opt-check"></span>Build basic design skills with Canva / Figma</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_lo9"><label for="d_lo9"><span class="opt-check"></span>Learn to create and measure social media content</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_lo10"><label for="d_lo10"><span class="opt-check"></span>Develop customer empathy through user-facing work</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_lo11"><label for="d_lo11"><span class="opt-check"></span>Understand sales processes and customer lifecycle</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_lo12"><label for="d_lo12"><span class="opt-check"></span>Learn to manage competing priorities and deadlines</label></div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Tasks the Intern Will Work On <span class="badge badge-multi">Multi-select</span></div>
+      <div class="options-grid wide">
+        <div class="opt-item"><input type="checkbox" id="d_task1"><label for="d_task1"><span class="opt-check"></span>Schedule and publish social media posts</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_task2"><label for="d_task2"><span class="opt-check"></span>Conduct competitor and market research</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_task3"><label for="d_task3"><span class="opt-check"></span>Create wireframes with guidance</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_task4"><label for="d_task4"><span class="opt-check"></span>Assist with event coordination and logistics</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_task5"><label for="d_task5"><span class="opt-check"></span>Draft blog posts, newsletters, and captions</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_task6"><label for="d_task6"><span class="opt-check"></span>Update and maintain spreadsheets and trackers</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_task7"><label for="d_task7"><span class="opt-check"></span>Support customer outreach and follow-up</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_task8"><label for="d_task8"><span class="opt-check"></span>Assist with data entry and database maintenance</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_task9"><label for="d_task9"><span class="opt-check"></span>Help prepare presentations and reports</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_task10"><label for="d_task10"><span class="opt-check"></span>Handle inbox management and email drafting</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_task11"><label for="d_task11"><span class="opt-check"></span>Assist with onboarding new customers or employees</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_task12"><label for="d_task12"><span class="opt-check"></span>Attend and take notes in client or team meetings</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_task13"><label for="d_task13"><span class="opt-check"></span>Shadow senior team members and document learnings</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_task14"><label for="d_task14"><span class="opt-check"></span>Monitor and report on social media performance metrics</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_task15"><label for="d_task15"><span class="opt-check"></span>Respond to customer inquiries with guidance</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_task16"><label for="d_task16"><span class="opt-check"></span>Research and compile lists of leads / prospects</label></div>
+      </div>
+    </div>
+
+    <!-- How mentoring will work -->
+    <div class="field-group">
+      <div class="field-label">How Will You Mentor & Guide This Intern? <span class="badge badge-multi">Multi-select</span></div>
+      <div class="field-hint">Be specific — these options help us assess how well-structured your onboarding is for novices.</div>
+      <div class="options-grid wide">
+        <div class="opt-item"><input type="checkbox" id="d_men1"><label for="d_men1"><span class="opt-check"></span>Weekly 1-on-1 with direct supervisor</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_men2"><label for="d_men2"><span class="opt-check"></span>Shadowing sessions with experienced team members</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_men3"><label for="d_men3"><span class="opt-check"></span>Structured task list with daily or weekly check-ins</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_men4"><label for="d_men4"><span class="opt-check"></span>On-the-job training for specific tools used</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_men5"><label for="d_men5"><span class="opt-check"></span>Gradual increase in responsibility over time</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_men6"><label for="d_men6"><span class="opt-check"></span>Assigned a peer buddy from the same team</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_men7"><label for="d_men7"><span class="opt-check"></span>Explicit feedback after every task or deliverable</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_men8"><label for="d_men8"><span class="opt-check"></span>Company overview and process walkthrough in first week</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_men9"><label for="d_men9"><span class="opt-check"></span>Access to recorded training videos or SOPs</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_men10"><label for="d_men10"><span class="opt-check"></span>Monthly career conversations and goal-setting</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_men11"><label for="d_men11"><span class="opt-check"></span>Safe environment to ask questions without judgment</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_men12"><label for="d_men12"><span class="opt-check"></span>Intern presents a small project before end of programme</label></div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Mentorship Format <span class="badge badge-multi">Multi-select</span></div>
+      <div class="options-grid">
+        <div class="opt-item"><input type="checkbox" id="d_mf1"><label for="d_mf1"><span class="opt-check"></span>Weekly 1-on-1 with supervisor</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_mf2"><label for="d_mf2"><span class="opt-check"></span>Shadowing sessions</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_mf3"><label for="d_mf3"><span class="opt-check"></span>Structured task list with check-ins</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_mf4"><label for="d_mf4"><span class="opt-check"></span>On-the-job training</label></div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Mentor / Supervisor Availability <span class="badge badge-select">Dropdown</span></div>
+      <select class="styled-select">
+        <option value="">Select availability…</option>
+        <option>1–2 hours/week</option>
+        <option>3–5 hours/week</option>
+        <option>6+ hours/week</option>
+        <option>Daily (full supervision)</option>
+      </select>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Success Criteria <span class="badge badge-multi">Multi-select</span></div>
+      <div class="options-grid wide">
+        <div class="opt-item"><input type="checkbox" id="d_sc1"><label for="d_sc1"><span class="opt-check"></span>Completes tasks on time with minimal reminders</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_sc2"><label for="d_sc2"><span class="opt-check"></span>Demonstrates initiative and curiosity</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_sc3"><label for="d_sc3"><span class="opt-check"></span>Shows improvement in tool proficiency</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_sc4"><label for="d_sc4"><span class="opt-check"></span>Receives positive team feedback</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_sc5"><label for="d_sc5"><span class="opt-check"></span>Delivers a small project by end of internship</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_sc6"><label for="d_sc6"><span class="opt-check"></span>Grows in confidence and professional communication</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_sc7"><label for="d_sc7"><span class="opt-check"></span>Maintains consistent attendance and responsiveness</label></div>
+        <div class="opt-item"><input type="checkbox" id="d_sc8"><label for="d_sc8"><span class="opt-check"></span>Builds a usable portfolio piece or work sample</label></div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Portfolio / Evidence Required <span class="badge badge-single">Select one</span></div>
+      <div class="options-grid">
+        <div class="opt-item radio"><input type="radio" name="d_pe" id="dpe1"><label for="dpe1"><span class="opt-radio"></span>No portfolio required — can submit a writing sample</label></div>
+        <div class="opt-item radio"><input type="radio" name="d_pe" id="dpe2"><label for="dpe2"><span class="opt-radio"></span>Class project or school assignment is fine</label></div>
+        <div class="opt-item radio"><input type="radio" name="d_pe" id="dpe3"><label for="dpe3"><span class="opt-radio"></span>Not applicable — attitude and willingness is enough</label></div>
+        <div class="opt-item radio"><input type="radio" name="d_pe" id="dpe4"><label for="dpe4"><span class="opt-radio"></span>Any personal project (blog, social page, design, etc.)</label></div>
+      </div>
+    </div>
+
+    <div class="form-nav">
+      <button class="btn btn-ghost" onclick="goTo(4)">← Back</button>
+      <button class="btn btn-primary" onclick="goTo(6)" style="background-color: #092676; border-radius: 25px;">Review & Submit →</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       STEP 6 — Review
+  ══════════════════════════════════════════ -->
+  <div class="section-card" id="step-6" style="background: var(--surface);">
+     <div class="section-header">
+      <div class="section-icon">✅</div>
+      <div>
+        <div class="section-label">Final Step</div>
+        <div class="section-title">Review & Submit</div>
+        <div class="section-desc">Please confirm that all information is accurate before submitting.</div>
+      </div>
+    </div>
+    <div class="field-group">
+      <div class="field-label">Final Confirmation <span class="badge badge-multi">Please review</span></div>
+      <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 4px;">
+        <div class="opt-item"><input type="checkbox" id="conf1"><label for="conf1"><span class="opt-check"></span>All information provided is accurate and up to date</label></div>
+        <div class="opt-item"><input type="checkbox" id="conf2"><label for="conf2"><span class="opt-check"></span>We have a designated person to oversee the intern(s)</label></div>
+        <div class="opt-item"><input type="checkbox" id="conf3"><label for="conf3"><span class="opt-check"></span>We understand this is a learning programme and commit to supporting student development</label></div>
+        <div class="opt-item"><input type="checkbox" id="conf4"><label for="conf4"><span class="opt-check"></span>We agree to provide feedback on intern performance as requested</label></div>
+      </div>
+      <div class="field-note" style="margin-top: 16px;">
+        By submitting, you agree to be contacted by the programme team to confirm intern placements. You can update this information at any time by reaching out to us directly.
+      </div>
+    </div>
+    <div class="form-nav">
+      <button class="btn btn-ghost" onclick="goTo(5)">← Back</button>
+      <button class="btn btn-success" onclick="handleSubmit()" style="background-color: #43e97b; color: white;">🚀 Submit Application</button>
+    </div>
+  </div>
+
+  <!-- Summary / Thank you -->
+  <div class="summary-card" id="summary">
+    <div class="summary-icon">🎉</div>
+    <div class="summary-title">Application Received!</div>
+    <div class="summary-sub">Thank you for completing the internship intake form. Our team will review your responses and reach out within 3–5 business days to confirm placements.</div>
+    <div class="summary-chips">
+      <div class="summary-chip">✓ Company info saved</div>
+      <div class="summary-chip">✓ Categories submitted</div>
+      <div class="summary-chip">✓ Matching in progress</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  let current = 0;
+  const total = 7;
+
+  function goTo(step) {
+    document.getElementById('step-' + current)?.classList.remove('active');
+    document.querySelectorAll('#progressBar .progress-step').forEach((s, i) => {
+      s.classList.remove('active');
+      if (i < step) s.classList.add('done');
+      else s.classList.remove('done');
+    });
+    current = step;
+    document.getElementById('step-' + current)?.classList.add('active');
+    document.querySelectorAll('#progressBar .progress-step')[step]?.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toggleCat(cat) {
+    const cb = document.getElementById('sel-' + cat);
+    const card = document.getElementById('card-' + cat);
+    if (cb.checked) card.classList.add('checked-' + cat);
+    else card.classList.remove('checked-' + cat);
+  }
+
+  function handleSubmit() {
+    document.getElementById('step-6').classList.remove('active');
+    document.getElementById('summary').classList.add('active');
+    document.getElementById('progressBar').style.display = 'none';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
