@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Partner with Lumintern · Company Registration</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #F8FAFE;
+            color: #111827;
+            padding: 2rem 1rem;
+            line-height: 1.5;
+        }
+
+        .registration-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2rem;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.02);
+            overflow: hidden;
+        }
+
+        .reg-header {
+            padding: 2rem 2rem 1rem 2rem;
+            border-bottom: 1px solid #f0f2f5;
+            background: white;
+        }
+
+        .brand-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 0.75rem;
+        }
+
+        .brand-icon {
+            width: 44px;
+            height: 44px;
+            background: #092676;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 0 8px 14px -6px rgba(9, 38, 118, 0.2);
+        }
+
+        .brand-name {
+            font-size: 1.7rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: #092676;
+        }
+
+        .brand-name span {
+            font-weight: 500;
+            color: #1f2937;
+        }
+
+        .reg-header h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: #111827;
+            margin-top: 0.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .reg-header p {
+            color: #5b6e8c;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .progress-area {
+            padding: 0 2rem;
+            background: white;
+        }
+
+        .progress-track {
+            background: #eef2ff;
+            height: 6px;
+            border-radius: 12px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: #092676;
+            height: 100%;
+            width: 0%;
+            border-radius: 12px;
+            transition: width 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        .progress-text {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #4b5563;
+            margin-top: 12px;
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
+        }
+
+        .form-content {
+            padding: 2rem 2rem 2rem 2rem;
+        }
+
+        .step {
+            display: none;
+            animation: fadeUp 0.3s ease-out;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: #092676;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            color: #5b6e8c;
+            margin-bottom: 2rem;
+            border-left: 3px solid #e2e8f0;
+            padding-left: 1rem;
+        }
+
+        .info-box {
+            background: #F8FAFE;
+            border-radius: 1.25rem;
+            padding: 1.5rem;
+            margin-bottom: 1.8rem;
+            border: 1px solid #eef2ff;
+        }
+
+        .info-box.warning {
+            background: #FFFAF0;
+            border-left: 4px solid #F59E0B;
+        }
+
+        .info-box.critical {
+            background: #FEF2F2;
+            border-left: 4px solid #EF4444;
+        }
+
+        .info-box h3 {
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            color: #111827;
+        }
+
+        .info-box p, .info-box ul, .info-box li {
+            color: #374151;
+            line-height: 1.6;
+        }
+
+        .info-box ul {
+            margin-left: 1.2rem;
+        }
+
+        .agreement-box {
+            background: #F9FAFE;
+            border: 1px solid #eef2ff;
+            border-radius: 1.5rem;
+            padding: 1.8rem;
+            max-height: 480px;
+            overflow-y: auto;
+            margin-bottom: 1.8rem;
+            font-size: 0.9rem;
+            line-height: 1.65;
+        }
+
+        .agreement-box h3, .agreement-box h4 {
+            color: #092676;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .agreement-box h3:first-child {
+            margin-top: 0;
+        }
+
+        .agreement-box p, .agreement-box li {
+            color: #2c3e50;
+        }
+
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+
+        .form-group label {
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #1F2A44;
+        }
+
+        .required {
+            color: #EF4444;
+            margin-left: 3px;
+        }
+
+        .label-note {
+            display: block;
+            font-weight: 400;
+            font-size: 0.75rem;
+            color: #6c86a3;
+            margin-top: 4px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 1rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            background: white;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #092676;
+            box-shadow: 0 0 0 3px rgba(9, 38, 118, 0.1);
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .checkbox-group {
+            background: #F9FAFE;
+            border-radius: 1rem;
+            padding: 1rem 1.2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            cursor: pointer;
+            border: 1px solid #eef2ff;
+            transition: 0.2s;
+        }
+
+        .checkbox-group:hover {
+            background: #F1F5F9;
+        }
+
+        .checkbox-group input {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            accent-color: #092676;
+            cursor: pointer;
+        }
+
+        .multi-select-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .multi-select-item {
+            background: #F9FAFE;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 1rem;
+            padding: 0.8rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .multi-select-item:hover {
+            border-color: #092676;
+            background: #F1F5F9;
+        }
+
+        .multi-select-item input {
+            width: 18px;
+            height: 18px;
+            accent-color: #092676;
+        }
+
+        .radio-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .radio-option {
+            background: #F9FAFE;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 1rem;
+            padding: 1rem 1.2rem;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .radio-option:hover {
+            border-color: #092676;
+        }
+
+        .radio-option input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+            accent-color: #092676;
+        }
+
+        .repeating-block {
+            border: 1px solid #eef2ff;
+            border-radius: 1.2rem;
+            padding: 1.5rem;
+            background: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .repeating-block-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .btn-remove {
+            background: #FEE2E2;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 2rem;
+            font-weight: 600;
+            font-size: 0.75rem;
+            color: #B91C1C;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-add {
+            background: #092676;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 2rem;
+            font-weight: 700;
+            color: white;
+            font-size: 0.85rem;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: 0.2s;
+        }
+
+        .btn-add:hover {
+            background: #0b2e8a;
+            transform: translateY(-1px);
+        }
+
+        .rank-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 15px;
+            background: #F9FAFE;
+            padding: 10px 12px;
+            border-radius: 1rem;
+        }
+
+        .rank-row label {
+            min-width: 150px;
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+
+        .rank-row select {
+            width: auto;
+            min-width: 120px;
+            padding: 0.5rem 0.8rem;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2.5rem;
+            padding-top: 1rem;
+        }
+
+        .btn {
+            padding: 0.9rem 2rem;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .btn-prev {
+            background: #F1F5F9;
+            color: #1f2a44;
+        }
+
+        .btn-prev:hover {
+            background: #E2E8F0;
+        }
+
+        .btn-next, .btn-submit {
+            background: #092676;
+            color: white;
+            box-shadow: 0 4px 8px rgba(9, 38, 118, 0.2);
+        }
+
+        .btn-next:hover, .btn-submit:hover {
+            background: #0b2e8a;
+            transform: translateY(-2px);
+        }
+
+        .validation-error {
+            color: #EF4444;
+            font-size: 0.75rem;
+            margin-top: 6px;
+            display: none;
+        }
+
+        .form-group.error input,
+        .form-group.error select,
+        .form-group.error textarea {
+            border-color: #EF4444;
+        }
+
+        .form-group.error .validation-error {
+            display: block;
+        }
+
+        .success-message {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .success-message .icon {
+            background: #E6F7E6;
+            width: 70px;
+            height: 70px;
+            border-radius: 100px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #0C8F2C;
+            margin-bottom: 1.5rem;
+        }
+
+        .success-message h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #092676;
+        }
+
+        @media (max-width: 680px) {
+            .form-content {
+                padding: 1.5rem;
+            }
+            .progress-area, .reg-header {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+            .rank-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .rank-row select {
+                width: 100%;
+            }
+            .buttons {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .btn {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="registration-container">
+    <div class="reg-header">
+        <div class="brand-row">
+            <div class="brand-icon">L</div>
+            <div class="brand-name">Lumin<span style="font-weight:500;">tern</span></div>
+        </div>
+        <h1>Company partnership & registration</h1>
+        <p>Join Nigeria's intelligent internship ecosystem — match with pre‑screened talent across all skill levels.</p>
+    </div>
+
+    <div class="progress-area">
+        <div class="progress-track">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-text" id="progressText">Step 1 of 9: Partnership Agreement</div>
+    </div>
+
+    <div class="form-content">
+        <form id="registrationForm">
+            <!-- STEP 1: AGREEMENT (fixed checkbox) -->
+            <div class="step active" data-step="1">
+                <h2 class="section-title">Partnership agreement</h2>
+                <p class="section-subtitle">Read carefully — this defines our shared commitment.</p>
+                <div class="agreement-box">
+                    <h3>LASU Internship Platform — Company Partnership Commitment</h3>
+                    <p><strong>Effective Date:</strong> Upon Form Submission</p>
+                    <p>This agreement establishes the terms under which your organization participates in the Lumintern‑powered internship ecosystem.</p>
+                    <h4>1. Commitment to Equitable Access</h4>
+                    <p>Your organization commits to accepting intern candidates across <strong>three development levels</strong>:</p>
+                    <ul>
+                        <li><strong>Type A (Skilled/Technical):</strong> CPT Level 3+ students ready for technical contribution.</li>
+                        <li><strong>Type B (Developing/Early Career):</strong> CPT Level 1-2 students with strong growth potential.</li>
+                        <li><strong>Type C (Alternative Track):</strong> Non‑coding technical roles (Design, IT Admin, Marketing, etc.).</li>
+                    </ul>
+                    <h4>2. Slot Distribution & Matching</h4>
+                    <p>Our Weighted Sum Model will present matched candidates based on role requirements, skills, and competency scores.</p>
+                    <h4>3. Your Authority & Responsibilities</h4>
+                    <p>You retain full interview & selection authority. You commit to structured supervision, feedback, and fair treatment for all interns.</p>
+                    <h4>4. Benefits to Your Organization</h4>
+                    <ul><li>Access to pre‑screened, skill‑aligned talent</li><li>Reduced recruitment friction</li><li>Recognition as an equitable development partner</li></ul>
+                    <h4>5. Agreement Duration</h4>
+                    <p>Valid for current academic session; either party may terminate with 30 days notice. Any students already placed at the time of termination will complete their internship term unless otherwise mutually agreed.</p>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="agreement" name="agreement" required>
+                        <label for="agreement"><strong>I have read and understood the Partnership Agreement.</strong><br>By checking this, our organization accepts the terms and commits to equitable participation.<span class="required">*</span></label>
+                    </div>
+                    <div class="validation-error">You must accept the Partnership Agreement to continue.</div>
+                </div>
+                <div class="info-box critical">
+                    <h3>⚠️ Important</h3>
+                    <p>If your organization cannot commit to interns across all three development levels, you will not be able to participate. This ensures equitable opportunity for all LASU students.</p>
+                </div>
+            </div>
+
+            <!-- STEP 2: ORGANIZATION IDENTITY -->
+            <div class="step" data-step="2">
+                <h2 class="section-title">Organization identity</h2>
+                <p class="section-subtitle">Basic information about your company</p>
+                <div class="form-group"><label>Full legal name <span class="required">*</span></label><input type="text" id="companyName" name="companyName" required><div class="validation-error">Required</div></div>
+                <div class="form-group"><label>Industry sector <span class="required">*</span></label><select id="industry" name="industry" required><option value="">-- Select --</option><option value="fintech">FinTech</option><option value="software">Software Development</option><option value="telecom">Telecom</option><option value="healthtech">Healthcare IT</option><option value="cybersecurity">Cybersecurity</option><option value="data">Data/Analytics</option><option value="other">Other</option></select><div class="validation-error">Required</div></div>
+                <div class="form-group"><label>Company size <span class="required">*</span></label><select id="companySize" name="companySize" required><option value="">-- Select --</option><option value="1-10">1-10 (Startup)</option><option value="11-50">11-50 (Small)</option><option value="51-200">51-200 (Medium)</option><option value="201-1000">201-1000 (Large)</option><option value="1000+">1000+ (Enterprise)</option></select><div class="validation-error">Required</div></div>
+                <div class="form-group"><label>Office address <span class="required">*</span></label><input type="text" id="officeAddress" name="officeAddress" required><div class="validation-error">Required</div></div>
+                <div class="form-group"><label>Lagos Area/LGA <span class="required">*</span></label><select id="lagosArea" name="lagosArea" required><option value="">-- Select --</option><option value="ikeja">Ikeja</option><option value="yaba">Yaba</option><option value="lekki">Lekki</option><option value="victoria-island">Victoria Island</option><option value="other">Other</option></select><div class="validation-error">Required</div></div>
+                <h3 style="margin: 1.5rem 0 1rem 0; font-size:1.2rem;">Designated contact person</h3>
+                <div class="form-group"><label>Full name <span class="required">*</span></label><input type="text" id="contactName" name="contactName" required><div class="validation-error">Required</div></div>
+                <div class="form-group"><label>Job title <span class="required">*</span></label><input type="text" id="contactTitle" name="contactTitle" required><div class="validation-error">Required</div></div>
+                <div class="form-group"><label>Email <span class="required">*</span></label><input type="email" id="contactEmail" name="contactEmail" required><div class="validation-error">Valid email required</div></div>
+                <div class="form-group"><label>Phone <span class="required">*</span></label><input type="tel" id="contactPhone" name="contactPhone" required><div class="validation-error">Required</div></div>
+            </div>
+
+            <!-- STEP 3: ROLE SPECIFICATION -->
+            <div class="step" data-step="3">
+                <h2 class="section-title">Internship role specs</h2>
+                <div class="form-group"><label>Total intern slots <span class="required">*</span></label><input type="number" id="totalSlots" name="totalSlots" min="1" max="20" required><div class="validation-error">1-20 slots</div></div>
+                <div class="form-group"><label>Duration <span class="required">*</span></label><select id="duration" name="duration" required><option value="">-- Select --</option><option value="8">8 weeks</option><option value="12">12 weeks</option><option value="24">24 weeks (SIWES)</option></select><div class="validation-error">Required</div></div>
+                <div class="form-group"><label>Work mode <span class="required">*</span></label><select id="workMode" name="workMode" required><option value="">-- Select --</option><option value="onsite-fulltime">Onsite full-time</option><option value="remote-fulltime">Remote full-time</option><option value="hybrid">Hybrid</option></select><div class="validation-error">Required</div></div>
+                <div class="form-group"><label>Stipend <span class="required">*</span></label><select id="stipend" name="stipend" required><option value="">-- Select --</option><option value="10k-30k">₦10,000-30,000/month</option><option value="31k-60k">₦31,000-60,000</option><option value="none">No stipend</option></select><div class="validation-error">Required</div></div>
+                <div class="form-group"><label>Team culture <span class="required">*</span></label><textarea id="teamEnvironment" name="teamEnvironment" required minlength="80"></textarea><div class="validation-error">Min 80 chars</div></div>
+            </div>
+
+            <!-- TYPE A -->
+            <div class="step" data-step="4">
+                <h2 class="section-title">Type A – Skilled/Technical</h2>
+                <div class="info-box"><h3>⚡ Ready‑to‑work interns</h3><p>CPT Level 3-4, can contribute from week 1-2.</p></div>
+                <div class="form-group"><label>Select Type A roles</label><div class="multi-select-grid" id="typeARoles"><div class="multi-select-item"><input type="checkbox" name="typeARoles" value="backend"> <label>Backend Dev</label></div><div class="multi-select-item"><input type="checkbox" name="typeARoles" value="frontend"> <label>Frontend Dev</label></div><div class="multi-select-item"><input type="checkbox" name="typeARoles" value="data"> <label>Data Analyst</label></div></div><div class="validation-error">Select at least one</div></div>
+                <div class="form-group"><label>Min CGPA</label><select id="typeAMinCGPA" name="typeAMinCGPA" required><option value="">-- Select --</option><option value="3.0">3.0</option><option value="3.5">3.5</option><option value="none">No min</option></select><div class="validation-error">Required</div></div>
+                <div class="form-group"><label>Describe expected project complexity <span class="required">*</span></label><textarea id="typeAProjects" name="typeAProjects" required minlength="80"></textarea><div class="validation-error">Min 80 chars</div></div>
+            </div>
+
+            <!-- TYPE B -->
+            <div class="step" data-step="5">
+                <h2 class="section-title">Type B – Developing/Early Career</h2>
+                <div class="info-box warning"><h3>🌱 Growth‑stage interns</h3><p>Need structured mentorship. You commit to training.</p></div>
+                <div class="multi-select-grid"><div class="multi-select-item"><input type="checkbox" name="typeBRoles" value="web-trainee"> <label>Web Trainee</label></div><div class="multi-select-item"><input type="checkbox" name="typeBRoles" value="qa-junior"> <label>Junior QA</label></div></div>
+                <div class="form-group"><label><input type="checkbox" id="willingToDevelop" name="willingToDevelop" value="yes" required> <strong>We are open to developing students with high motivation</strong><span class="required">*</span></label><div class="validation-error">You must confirm</div></div>
+                <div class="form-group"><label>Min CGPA for Type B</label><select id="typeBMinCGPA" name="typeBMinCGPA" required><option value="2.0">2.0</option><option value="2.5">2.5</option></select><div class="validation-error">Required</div></div>
+                <div class="form-group"><label>Training plan (first weeks) <span class="required">*</span></label><textarea id="typeBTraining" name="typeBTraining" required minlength="100"></textarea><div class="validation-error">Min 100 chars</div></div>
+                <div class="form-group"><label>First‑two‑weeks tasks <span class="required">*</span></label><textarea id="typeBFirstWeeks" name="typeBFirstWeeks" required minlength="80"></textarea><div class="validation-error">Required</div></div>
+            </div>
+
+            <!-- TYPE C -->
+            <div class="step" data-step="6">
+                <h2 class="section-title">Type C – Alternative track</h2>
+                <div class="multi-select-grid"><div class="multi-select-item"><input type="checkbox" name="typeCRoles" value="uiux"> <label>UI/UX Designer</label></div><div class="multi-select-item"><input type="checkbox" name="typeCRoles" value="marketing"> <label>Digital Marketing</label></div><div class="multi-select-item"><input type="checkbox" name="typeCRoles" value="it-admin"> <label>IT Admin</label></div></div>
+                <div class="form-group"><label>Tools/skills needed <span class="required">*</span></label><textarea id="typeCSkills" name="typeCSkills" required minlength="80"></textarea><div class="validation-error">Required</div></div>
+                <div class="form-group"><label>Min CGPA</label><select id="typeCMinCGPA" name="typeCMinCGPA" required><option value="2.0">2.0</option><option value="2.5">2.5</option><option value="none">No min</option></select><div class="validation-error">Required</div></div>
+                <div class="form-group"><label>Projects / work examples <span class="required">*</span></label><textarea id="typeCProjects" name="typeCProjects" required minlength="100"></textarea><div class="validation-error">Required</div></div>
+            </div>
+
+            <!-- STEP 7: soft skills -->
+            <div class="step" data-step="7">
+                <h2 class="section-title">Supervision & soft skills</h2>
+                <div class="form-group"><label>Supervision level</label><select id="supervisionLevel" name="supervisionLevel" required><option value="">--</option><option value="high">High – daily mentoring</option><option value="moderate">Moderate – weekly check-ins</option></select><div class="validation-error">Required</div></div>
+                <div class="form-group"><label>Team experience required?</label><select id="teamExperience" name="teamExperience" required><option value="yes">Yes essential</option><option value="preferred">Preferred</option></select><div class="validation-error">Required</div></div>
+                <div class="form-group"><label>Presentations expected?</label><select id="presentations" name="presentations" required><option value="yes">Formal presentations</option><option value="informal">Informal updates</option></select><div class="validation-error">Required</div></div>
+                <div class="form-group"><label>Mentorship approach <span class="required">*</span></label><textarea id="mentorshipApproach" name="mentorshipApproach" required minlength="100"></textarea><div class="validation-error">Min 100 chars</div></div>
+            </div>
+
+            <!-- STEP 8: interview -->
+            <div class="step" data-step="8">
+                <h2 class="section-title">Interview & assessment</h2>
+                <div class="form-group"><label>Portfolio required?</label><select id="portfolioRequired" name="portfolioRequired" required><option value="yes-github">GitHub required</option><option value="optional">Optional</option></select><div class="validation-error">Required</div></div>
+                <div class="form-group"><label>Example interview questions <span class="required">*</span></label><textarea id="interviewQuestions" name="interviewQuestions" required minlength="100"></textarea><div class="validation-error">At least 100 chars</div></div>
+                <div class="form-group"><label>Top 3 assessment criteria <span class="required">*</span></label><textarea id="assessmentCriteria" name="assessmentCriteria" required minlength="80"></textarea><div class="validation-error">Required</div></div>
+            </div>
+
+            <!-- STEP 9: confirmation -->
+            <div class="step" data-step="9">
+                <h2 class="section-title">Final confirmation</h2>
+                <div class="info-box"><h3>✓ Before you submit</h3><ul><li>All info accurate</li><li>Commit to Type A, B & C roles</li><li>Partnership agreement accepted</li></ul></div>
+                <div class="form-group"><div class="checkbox-group"><input type="checkbox" id="confirmation" name="confirmation" required><label><strong>I confirm that all information is accurate and our organization commits to a quality internship experience across all three development levels.</strong><span class="required">*</span></label></div><div class="validation-error">Confirmation required</div></div>
+                <div class="form-group"><label>Notifications about launch?</label><select id="notifications" name="notifications" required><option value="yes">Yes, keep me updated</option><option value="no">No</option></select><div class="validation-error">Required</div></div>
+                <div class="info-box"><h3>📧 What’s next</h3><p>Your pre‑registration is saved. You'll receive a confirmation email and full onboarding access when the platform launches.</p></div>
+            </div>
+
+            <div class="buttons">
+                <button type="button" class="btn btn-prev" id="prevBtn" style="display: none;">← Previous</button>
+                <button type="button" class="btn btn-next" id="nextBtn">Next →</button>
+                <button type="submit" class="btn btn-submit" id="submitBtn" style="display: none;">Submit registration</button>
+            </div>
+        </form>
+
+        <div id="successMessage" class="success-message" style="display: none;">
+            <div class="icon">✓</div>
+            <h2>Registration successful!</h2>
+            <p>Thank you for partnering with Lumintern. A confirmation email has been sent to <strong id="confirmEmail"></strong>.</p>
+            <p>We’ll contact you when the platform is ready for company onboarding.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    let currentStep = 1;
+    const totalSteps = 9;
+    const steps = document.querySelectorAll('.step');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const submitBtn = document.getElementById('submitBtn');
+    const progressFill = document.getElementById('progressFill');
+    const progressText = document.getElementById('progressText');
+    const stepLabels = ['Partnership Agreement', 'Organization Identity', 'Role Specification', 'Type A Roles', 'Type B Roles', 'Type C Roles', 'Supervision', 'Interview', 'Final Confirmation'];
+
+    function updateProgress() { progressFill.style.width = (currentStep/totalSteps)*100 + '%'; progressText.textContent = `Step ${currentStep} of ${totalSteps}: ${stepLabels[currentStep-1]}`; }
+    function showStep(step) {
+        steps.forEach((s,i)=>{ s.classList.toggle('active', i+1===step); });
+        prevBtn.style.display = step===1 ? 'none' : 'inline-block';
+        nextBtn.style.display = step===totalSteps ? 'none' : 'inline-block';
+        submitBtn.style.display = step===totalSteps ? 'inline-block' : 'none';
+        updateProgress(); window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function validateStep(step) {
+        const stepEl = steps[step-1];
+        let isValid = true;
+        stepEl.querySelectorAll('input[required], select[required], textarea[required]').forEach(inp => {
+            const group = inp.closest('.form-group');
+            if(group) group.classList.remove('error');
+            if(inp.type === 'checkbox' && !inp.checked) { isValid=false; if(group) group.classList.add('error'); }
+            else if(inp.type==='email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inp.value)) { isValid=false; if(group) group.classList.add('error'); }
+            else if(inp.tagName==='TEXTAREA' && inp.value.trim().length < (inp.getAttribute('minlength')||0)) { isValid=false; if(group) group.classList.add('error'); }
+            else if(!inp.value && inp.type!=='checkbox') { isValid=false; if(group) group.classList.add('error'); }
+        });
+        if(step===4 && document.querySelectorAll('#typeARoles input:checked').length===0) { alert('Select at least one Type A role'); isValid=false; }
+        if(step===5 && document.querySelectorAll('input[name="typeBRoles"]:checked').length===0) { alert('Select at least one Type B role'); isValid=false; }
+        if(step===6 && document.querySelectorAll('input[name="typeCRoles"]:checked').length===0) { alert('Select at least one Type C role'); isValid=false; }
+        if(step===5 && !document.getElementById('willingToDevelop').checked) { alert('Confirm you are open to developing students'); isValid=false; }
+        if(!isValid) alert('Please fill all required fields.');
+        return isValid;
+    }
+    nextBtn.onclick = () => { if(validateStep(currentStep)) { currentStep++; showStep(currentStep); } };
+    prevBtn.onclick = () => { currentStep--; showStep(currentStep); };
+    document.getElementById('registrationForm').onsubmit = (e) => {
+        e.preventDefault();
+        if(!validateStep(currentStep)) return;
+        const formData = new FormData(e.target);
+        const data = {};
+        for(let [k,v] of formData.entries()) data[k] = v;
+        console.log('Submitted', data);
+        document.querySelector('.form-content form').style.display = 'none';
+        document.getElementById('successMessage').style.display = 'block';
+        document.getElementById('confirmEmail').innerText = data.contactEmail || 'your email';
+        progressFill.style.width = '100%';
+        progressText.innerText = 'Registration complete ✓';
+    };
+    document.querySelectorAll('input, select, textarea').forEach(el => el.addEventListener('input', ()=> { const g = el.closest('.form-group'); if(g) g.classList.remove('error'); }));
+    showStep(1);
+</script>
+</body>
+</html>

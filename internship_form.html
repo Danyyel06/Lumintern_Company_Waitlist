@@ -137,9 +137,10 @@
   .field-hint { font-size: 13px; color: var(--text-dim); margin-bottom: 20px; }
 
   /* ── Input Grid ── */
-  .options-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
-  .options-grid.narrow { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
-  .options-grid.wide { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+  /* options-grid: base 1-col defined in mobile-first block below */
+  .options-grid { display: grid; grid-template-columns: 1fr; gap: 8px; }
+  .options-grid.narrow { grid-template-columns: 1fr; }
+  .options-grid.wide { grid-template-columns: 1fr; }
 
   .opt-item input { position: absolute; opacity: 0; }
   .opt-item label {
@@ -190,7 +191,8 @@
   .btn-success { background: var(--accent-success); color: #fff; }
 
   /* ── Category Cards (Section 2) ── */
-  .cat-select-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  /* cat-select-grid: controlled by mobile-first breakpoints */
+  .cat-select-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
   .cat-card {
     border: 1px solid var(--border); padding: 24px; border-radius: 16px;
     cursor: pointer; transition: 0.2s; position: relative;
@@ -209,7 +211,6 @@
   .summary-card.active { display: block; }
   .summary-title { font-size: 32px; font-weight: 800; color: var(--primary); margin-bottom: 16px; }
 
-  @media (max-width: 600px) { .cat-select-grid { grid-template-columns: 1fr; } .progress-label { display: none; } }
 
 
 
@@ -233,13 +234,10 @@
   .field-hint { font-size: 12px; color: var(--text-dim); margin-bottom: 16px; }
 
   /* ── Checkbox Grid ── */
-  .options-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 8px;
-  }
-  .options-grid.wide { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
-  .options-grid.narrow { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+  /* options-grid fully controlled by mobile-first breakpoints below */
+  .options-grid { display: grid; grid-template-columns: 1fr; gap: 8px; }
+  .options-grid.wide   { grid-template-columns: 1fr; }
+  .options-grid.narrow { grid-template-columns: 1fr; }
 
   .opt-item {
     position: relative;
@@ -350,9 +348,8 @@
 
   /* ── Company Info Section ── */
   .info-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    display: grid; grid-template-columns: 1fr; gap: 14px;
   }
-  @media (max-width: 600px) { .info-grid { grid-template-columns: 1fr; } }
   .info-field label {
     display: block; font-size: 12px; font-weight: 500;
     color: var(--text-dim); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.06em;
@@ -366,10 +363,9 @@
 
   /* Category selection (Section 1) */
   .cat-select-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
+    display: grid; grid-template-columns: 1fr;
     gap: 12px;
   }
-  @media (max-width: 560px) { .cat-select-grid { grid-template-columns: 1fr; } }
   .cat-card {
     position: relative; border-radius: 12px;
     border: 2px solid var(--border); background: var(--tag-bg);
@@ -412,11 +408,438 @@
     font-size: 13px; color: var(--text-muted);
   }
 
-  @media (max-width: 640px) {
-    .section-header { padding: 20px; flex-direction: column; }
-    .field-group { padding: 20px; }
-    .hero { padding: 40px 20px; }
+
+  /* ════════════════════════════════════════════════════════════════
+     MOBILE-FIRST RESPONSIVE SYSTEM
+     Lumintern Internship Form — Plus Jakarta Sans / #092676 brand
+     Breakpoints:
+       Base (default)    →  320px – 479px   (Mobile)
+       @min 480px        →  480px – 639px   (Large Phone)
+       @min 640px        →  640px – 767px   (Tablet Portrait)
+       @min 768px        →  768px – 1023px  (Tablet Landscape)
+       @min 1024px       →  1024px – 1279px (Laptop)
+       @min 1280px       →  1280px+         (Desktop)
+     ════════════════════════════════════════════════════════════════ */
+
+  /* ─────────────────────────────────────────
+     BASE (320px+) — Mobile-first foundations
+     Single-column, touch-friendly, compact
+     ───────────────────────────────────────── */
+
+  /* Hero */
+  .hero {
+    padding: 36px 16px 28px;
+    text-align: center;
   }
+  .hero-inner { max-width: 100%; padding: 0; }
+  .hero-badge {
+    font-size: 10px;
+    padding: 5px 12px;
+    margin-bottom: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+  .hero h1 {
+    font-size: clamp(22px, 7vw, 32px);
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+  /* Remove the decorative circle on very small screens — avoids overflow */
+  .hero h1 span::after { display: none; }
+  .hero p {
+    font-size: 14px;
+    margin-bottom: 20px;
+    line-height: 1.65;
+  }
+  .hero-meta {
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+  }
+  .hero-meta-item { font-size: 12px; gap: 5px; }
+
+  /* Form wrap */
+  .form-wrap { padding: 20px 12px 80px; }
+
+  /* Progress bar — horizontally scrollable on tiny screens */
+  .progress-bar {
+    padding: 12px 10px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    justify-content: flex-start;
+    gap: 4px;
+  }
+  .progress-bar::-webkit-scrollbar { display: none; }
+  .progress-step {
+    flex: 0 0 auto;          /* don't shrink — scroll instead */
+    min-width: 44px;
+    gap: 5px;
+  }
+  .progress-dot {
+    width: 28px; height: 28px;
+    font-size: 10px;
+  }
+  .progress-label {
+    font-size: 9px;
+    display: none;           /* hidden at mobile, shown at tablet+ */
+  }
+  .progress-line {
+    flex: 0 0 12px;
+    height: 1px;
+    background: var(--border);
+    align-self: center;
+    margin-bottom: 13px;     /* optical align with dot center */
+  }
+
+  /* Section card */
+  .section-card {
+    border-radius: 14px;
+    margin-bottom: 20px;
+  }
+  .section-header {
+    padding: 20px 16px;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .section-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    font-size: 20px;
+  }
+  .section-title { font-size: 17px; }
+  .section-desc  { font-size: 13px; }
+
+  /* Field groups */
+  .field-group { padding: 18px 16px; }
+  .field-label {
+    font-size: 13px;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 6px;
+    line-height: 1.5;
+  }
+  .badge { font-size: 9px; padding: 2px 7px; }
+  .field-hint { font-size: 12px; margin-bottom: 14px; }
+
+  /* Grids — single column on mobile */
+  .options-grid,
+  .options-grid.wide,
+  .options-grid.narrow {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .info-grid       { grid-template-columns: 1fr; gap: 14px; }
+  .cat-select-grid { grid-template-columns: 1fr; gap: 10px; }
+
+  /* Option items — generous touch targets (min 48px) */
+  .opt-item label {
+    padding: 13px 14px;
+    font-size: 13px;
+    min-height: 48px;
+  }
+  .opt-check { width: 18px; height: 18px; }
+  .opt-radio  { width: 18px; height: 18px; }
+
+  /* Inputs & selects */
+  .styled-input,
+  .styled-select {
+    font-size: 14px;        /* prevents iOS zoom on focus */
+    padding: 13px 14px;
+    border-radius: 10px;
+    max-width: 100%;
+  }
+
+  /* Sub-group labels */
+  .sub-group-label { font-size: 10px; margin: 18px 0 10px; }
+
+  /* Category cards */
+  .cat-card { padding: 16px; border-radius: 12px; }
+  .cat-card-icon  { font-size: 24px; margin-bottom: 8px; }
+  .cat-card-title { font-size: 14px; margin-bottom: 3px; }
+  .cat-card-sub   { font-size: 12px; }
+
+  /* Nav buttons — full width stack on mobile */
+  .form-nav {
+    padding: 16px;
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+  .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 15px 20px;     /* min 48px touch target */
+    font-size: 14px;
+    border-radius: 12px;
+  }
+
+  /* Summary card */
+  .summary-card { padding: 32px 16px; border-radius: 16px; }
+  .summary-title { font-size: 22px; }
+  .summary-sub   { font-size: 14px; }
+  .summary-chips { gap: 6px; }
+  .summary-chip  { font-size: 12px; padding: 5px 12px; }
+
+  /* Field note */
+  .field-note { font-size: 12px; padding: 10px 12px; }
+
+  /* Info field labels */
+  .info-field > label { font-size: 11px; margin-bottom: 5px; }
+
+
+  /* ─────────────────────────────────────────
+     LARGE PHONE (480px+)
+     Two-column options, slightly more room
+     ───────────────────────────────────────── */
+  @media (min-width: 480px) {
+
+    .hero { padding: 44px 24px 32px; }
+    .hero h1 { font-size: clamp(26px, 6vw, 36px); }
+    .hero p  { font-size: 15px; }
+    .hero-meta { flex-direction: row; gap: 16px; }
+    .hero-meta-item { font-size: 13px; }
+
+    .form-wrap { padding: 24px 16px 80px; }
+
+    .progress-bar { padding: 14px 12px; gap: 6px; }
+    .progress-dot { width: 30px; height: 30px; font-size: 11px; }
+
+    .section-header { padding: 22px 20px; }
+    .section-title  { font-size: 18px; }
+    .field-group    { padding: 20px 20px; }
+
+    /* 2-column option grid on large phones for narrow variants */
+    .options-grid.narrow {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    /* Nav buttons side by side on large phone */
+    .form-nav {
+      flex-direction: row;
+      padding: 18px 20px;
+    }
+    .btn { width: auto; font-size: 14px; }
+
+    .cat-select-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .info-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+  }
+
+
+  /* ─────────────────────────────────────────
+     TABLET PORTRAIT (640px+)
+     Multi-column options grids, labels visible,
+     hero gets breathing room
+     ───────────────────────────────────────── */
+  @media (min-width: 640px) {
+
+    .hero { padding: 56px 32px 44px; }
+    .hero h1 { font-size: clamp(30px, 5vw, 42px); }
+    .hero p  { font-size: 16px; margin-bottom: 28px; }
+    .hero h1 span::after { display: block; } /* restore decorative circle */
+
+    .form-wrap { padding: 32px 24px 100px; }
+
+    /* Progress bar: show labels, fixed layout */
+    .progress-bar {
+      overflow-x: visible;
+      justify-content: space-between;
+      padding: 16px 18px;
+      gap: 0;
+      margin-bottom: 28px;
+    }
+    .progress-step { flex: 1; }
+    .progress-dot  { width: 32px; height: 32px; font-size: 12px; }
+    .progress-label { display: block; font-size: 10px; }
+    .progress-line { flex: 1; height: 1px; margin-bottom: 13px; }
+
+    /* Section layout */
+    .section-card { border-radius: 16px; margin-bottom: 24px; }
+    .section-header {
+      flex-direction: row;
+      align-items: center;
+      padding: 24px 28px;
+      gap: 16px;
+    }
+    .section-icon  { width: 50px; height: 50px; font-size: 22px; }
+    .section-title { font-size: 20px; }
+    .section-desc  { font-size: 14px; }
+    .field-group   { padding: 24px 28px; }
+    .field-label   { font-size: 13px; }
+
+    /* 2-col options grid (default) */
+    .options-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .options-grid.narrow {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .options-grid.wide {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cat-select-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .info-grid       { gap: 16px; }
+
+    .form-nav { padding: 20px 28px; }
+    .btn { padding: 13px 24px; font-size: 14px; }
+  }
+
+
+  /* ─────────────────────────────────────────
+     TABLET LANDSCAPE (768px+)
+     Wider grids, richer spacing throughout
+     ───────────────────────────────────────── */
+  @media (min-width: 768px) {
+
+    .hero { padding: 64px 40px 48px; }
+    .hero h1 { font-size: clamp(32px, 4.5vw, 46px); }
+    .hero p  { font-size: 17px; }
+    .hero-meta-item { font-size: 14px; }
+
+    .form-wrap { padding: 36px 28px 100px; }
+
+    .progress-bar   { padding: 18px 20px; border-radius: 14px; margin-bottom: 32px; }
+    .progress-dot   { width: 34px; height: 34px; font-size: 12px; }
+    .progress-label { font-size: 11px; }
+
+    .section-header { padding: 28px 32px; gap: 18px; }
+    .section-icon   { width: 54px; height: 54px; border-radius: 13px; font-size: 23px; }
+    .section-title  { font-size: 21px; }
+    .field-group    { padding: 26px 32px; }
+    .field-label    { font-size: 14px; }
+    .field-hint     { font-size: 13px; }
+
+    /* 3-column options grids */
+    .options-grid        { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+    .options-grid.narrow { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+    .options-grid.wide   { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+
+    .opt-item label { font-size: 13px; padding: 12px 14px; }
+
+    .info-grid { grid-template-columns: 1fr 1fr; gap: 18px; }
+
+    .form-nav { padding: 24px 32px; }
+    .btn { padding: 14px 28px; font-size: 15px; border-radius: 50px; }
+    .btn-primary { border-radius: 25px; }
+
+    .sub-group-label { font-size: 11px; margin: 22px 0 12px; }
+
+    .summary-card  { padding: 48px 36px; }
+    .summary-title { font-size: 26px; }
+    .summary-sub   { font-size: 15px; }
+  }
+
+
+  /* ─────────────────────────────────────────
+     LAPTOP / SMALL DESKTOP (1024px+)
+     Constrained max-width, polished density
+     ───────────────────────────────────────── */
+  @media (min-width: 1024px) {
+
+    .hero { padding: 72px 40px 56px; }
+    .hero h1 { font-size: clamp(36px, 4vw, 48px); }
+    .hero p  { font-size: 18px; max-width: 580px; margin-bottom: 32px; }
+
+    .form-wrap { max-width: 900px; padding: 40px 24px 100px; }
+
+    .progress-bar   { padding: 20px 24px; margin-bottom: 36px; }
+    .progress-dot   { width: 36px; height: 36px; font-size: 13px; }
+    .progress-label { font-size: 11px; }
+
+    .section-header { padding: 30px 36px; gap: 20px; }
+    .section-icon   { width: 56px; height: 56px; border-radius: 14px; font-size: 24px; }
+    .section-title  { font-size: 22px; }
+    .section-desc   { font-size: 14px; }
+    .field-group    { padding: 28px 36px; }
+
+    /* Full auto-fill grids resume */
+    .options-grid        { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 11px; }
+    .options-grid.narrow { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
+    .options-grid.wide   { grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); }
+
+    .opt-item label { font-size: 13.5px; }
+
+    .info-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+
+    .cat-select-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+    .cat-card        { padding: 22px; border-radius: 14px; }
+    .cat-card-icon   { font-size: 28px; margin-bottom: 10px; }
+    .cat-card-title  { font-size: 15px; }
+    .cat-card-sub    { font-size: 13px; }
+
+    .form-nav { padding: 28px 36px; }
+    .btn { padding: 14px 30px; font-size: 15px; }
+
+    .summary-card  { padding: 56px 48px; border-radius: 24px; }
+    .summary-title { font-size: 28px; }
+  }
+
+
+  /* ─────────────────────────────────────────
+     DESKTOP (1280px+)
+     Full design intent, maximum density
+     ───────────────────────────────────────── */
+  @media (min-width: 1280px) {
+
+    .hero { padding: 80px 40px 60px; }
+    .hero h1 { font-size: 48px; }
+    .hero p  { font-size: 18px; max-width: 600px; }
+    .hero-meta { gap: 24px; }
+    .hero-meta-item { font-size: 14px; }
+
+    .form-wrap { max-width: 960px; padding: 44px 0 120px; }
+
+    .progress-bar   { padding: 20px 24px; border-radius: 16px; margin-bottom: 40px; }
+    .progress-dot   { width: 38px; height: 38px; font-size: 13px; }
+    .progress-label { font-size: 12px; }
+
+    .section-card   { border-radius: 20px; margin-bottom: 32px; }
+    .section-header { padding: 32px 40px; gap: 20px; }
+    .section-icon   { width: 60px; height: 60px; border-radius: 14px; font-size: 26px; }
+    .section-title  { font-size: 23px; }
+    .field-group    { padding: 32px 40px; }
+    .field-label    { font-size: 14px; margin-bottom: 8px; }
+    .field-hint     { font-size: 13px; margin-bottom: 20px; }
+
+    .options-grid        { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+    .options-grid.narrow { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+    .options-grid.wide   { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+
+    .opt-item label { padding: 14px 16px; font-size: 14px; }
+    .opt-check { width: 20px; height: 20px; }
+    .opt-radio  { width: 20px; height: 20px; }
+
+    .info-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+
+    .cat-select-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+    .cat-card        { padding: 24px; border-radius: 16px; }
+    .cat-card-icon   { font-size: 32px; margin-bottom: 12px; }
+    .cat-card-title  { font-size: 16px; }
+    .cat-card-sub    { font-size: 13px; }
+
+    .styled-input,
+    .styled-select { font-size: 14px; padding: 12px 16px; }
+
+    .form-nav { padding: 32px 40px; }
+    .btn { padding: 14px 32px; font-size: 15px; }
+    .btn-primary { border-radius: 50px; }
+
+    .sub-group-label { margin: 24px 0 12px; font-size: 11px; }
+
+    .summary-card  { padding: 60px; border-radius: 24px; }
+    .summary-icon  { font-size: 56px; }
+    .summary-title { font-size: 32px; }
+    .summary-sub   { font-size: 15px; }
+    .summary-chip  { font-size: 13px; padding: 6px 14px; }
+  }
+
 </style>
 </head>
 <div class="hero">
